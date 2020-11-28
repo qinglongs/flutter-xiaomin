@@ -31,6 +31,8 @@ dependencies:
   english_words: ^3.1.0
 
   dio: ^2.1.0
+  # https://pub.dev/packages/image_picker/install
+  image_picker: ^0.6.7+14
 
 dev_dependencies:
   flutter_test:

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import './pages/log-page/log-page.dart';
-import './pages/add-log/add-log.dart';
 
 import './router.dart';
+import './components/show-action/show-action.dart';
+import './components/open-camera/open-camera.dart';
 
 const String img =
     'https://owenkenny.com/wp-content/uploads/2017/09/OKP-empathy-icon.png';
 
-const List<String> title = ['主页', '日记', '我的'];
+const List<String> title = ['记事本', '日记', '我的'];
 
 // 主题色
 final pink = Colors.pink[300];
@@ -27,6 +27,7 @@ class MyApp extends State<MyStatefuWidget> {
   // 点击右上角小红心
   // bool _isClick = false;
 
+  // 记事本列表原始数据
   List<dynamic> _list = [1, 2, 3, 4, 5, 6, 7, 8];
 
   Future<void> _onRefresh() {
@@ -39,10 +40,55 @@ class MyApp extends State<MyStatefuWidget> {
     });
   }
 
-  _onTap(String e) {
+  // 点击记事本列表的某个元素
+  _onTapListItem(String e) {
     return () => // 路由跳转
+        myRouter.push(context: context, url: 'log-page', params: e);
+  }
 
-        MyRouter().push(context: context, url: 'log-page', params: e);
+  // 点击+号按钮
+  onPressAdd() {
+    // 打开相机
+    Future<void> openCamera() async {
+      // 关闭弹窗
+      myRouter.goback(context);
+
+      // 获取拍照图片
+      final image = await openMyCamera.openCamera();
+
+      myRouter.push(context: context, url: 'add-log', params: image);
+    }
+
+    // 打开相册
+    Future<void> openGallery() async {
+      // 关闭弹窗
+      myRouter.goback(context);
+
+      // 获取相册图片
+      final image = await openMyCamera.openGallery();
+
+      myRouter.push(context: context, url: 'add-log', params: image);
+    }
+
+    // 动作面板选项
+    final List<Map<String, dynamic>> actionList = [
+      {'action': openCamera, 'text': '相机'},
+      {'action': openGallery, 'text': '相册'},
+      {'action': openGallery, 'text': '视频'}
+    ];
+
+    // 展示动作面板
+    actionSheet.showAction(context,
+        showContent: actionList.map((item) {
+          return ListTile(
+            onTap: item['action'],
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Text(item['text'])],
+            ),
+          );
+        }).toList());
   }
 
   @override
@@ -100,14 +146,18 @@ class MyApp extends State<MyStatefuWidget> {
               ],
             ),
             floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add, color: Colors.white),
+                child: GestureDetector(
+                  onLongPress: () {
+                    myRouter.push(context: context, url: 'add-log');
+                  },
+                  child: Icon(Icons.add, color: Colors.white),
+                ),
                 backgroundColor: pink,
-                onPressed: () {
-                  MyRouter().push(context: context, url: 'add-log');
-                }),
+                onPressed: onPressAdd),
+            // 实现tab栏切换效果
             body: Stack(
               children: [
-                new Offstage(
+                Offstage(
                     offstage: _currentIndex != 0, //这里控制
                     child: RefreshIndicator(
                       backgroundColor: pink,
@@ -115,7 +165,7 @@ class MyApp extends State<MyStatefuWidget> {
                       child: ListView(
                           children: _list
                               .map((e) => ListTile(
-                                    onTap: _onTap('第$e件事....'),
+                                    onTap: _onTapListItem('第$e件事....'),
                                     title: Text('第$e件事....'),
                                     subtitle: Text('2020年11月27日16点47分'),
                                     leading: CircleAvatar(
@@ -124,44 +174,17 @@ class MyApp extends State<MyStatefuWidget> {
                                   ))
                               .toList() as List<Widget>),
                     )),
-                new Offstage(
+                Offstage(
                   offstage: _currentIndex != 1, //这里控制
                   child: Text('日记'),
                 ),
-                new Offstage(
+                Offstage(
                   offstage: _currentIndex != 2, //这里控制
                   child: Text('我的'),
                 ),
               ],
             )));
   }
-}
-
-// 弹窗提示
-void showDialogModal(BuildContext context) {
-  showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return SimpleDialog(
-          backgroundColor: pink,
-          semanticLabel: '不知道这是啥',
-          title: Text(
-            '这是一个提示',
-            style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.bold,
-                color: Colors.white),
-          ),
-          children: <Widget>[
-            SimpleDialogOption(
-              child: Text(
-                '这是提示描述内容',
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          ],
-        );
-      });
 }
 
 void main() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import './pages/add-log/add-log.dart';
 import './pages/log-page/log-page.dart';
 
@@ -8,7 +9,9 @@ class MyRouter {
   _getPage({String url, dynamic params}) {
     switch (url) {
       case 'add-log':
-        return AddLog();
+        return AddLogState(
+          image: params as PickedFile,
+        );
         break;
       case 'log-page':
         return LogPage(
@@ -18,9 +21,17 @@ class MyRouter {
   }
 
   // push方法
-  push({BuildContext context, String url, dynamic params}) {
+  void push({BuildContext context, String url, params}) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
       return _getPage(url: url, params: params);
     }));
   }
+
+  // 路由回退
+  goback(BuildContext context) {
+    Navigator.of(context).pop();
+  }
 }
+
+// 实例化路由对象
+final myRouter = MyRouter();
