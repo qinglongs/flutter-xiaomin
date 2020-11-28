@@ -24,7 +24,7 @@ class OpenCamera {
   }
 
   // 点击+号按钮
-  onTapPickImage(context, Function callback) {
+  tapPickImage(context, Function callback) {
     // 打开相机
     Future<void> openCamera() async {
       // 关闭弹窗

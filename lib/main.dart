@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import './router.dart';
-import './components/show-action/show-action.dart';
+import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
 
 const String img =
@@ -28,7 +28,7 @@ class MyApp extends State<MyStatefuWidget> {
   // bool _isClick = false;
 
   // 记事本列表原始数据
-  List<dynamic> _list = [1, 2, 3, 4, 5, 6, 7, 8];
+  List<int> _list = [1, 2, 3, 4, 5, 6, 7, 8];
 
   Future<void> _onRefresh() {
     return Future(() {
@@ -48,47 +48,9 @@ class MyApp extends State<MyStatefuWidget> {
 
   // 点击+号按钮
   onPressAdd() {
-    // 打开相机
-    Future<void> openCamera() async {
-      // 关闭弹窗
-      myRouter.goback(context);
-
-      // 获取拍照图片
-      final image = await openMyCamera.openCamera();
-
-      myRouter.push(context: context, url: 'add-log', params: image);
-    }
-
-    // 打开相册
-    Future<void> openGallery() async {
-      // 关闭弹窗
-      myRouter.goback(context);
-
-      // 获取相册图片
-      final image = await openMyCamera.openGallery();
-
-      myRouter.push(context: context, url: 'add-log', params: image);
-    }
-
-    // 动作面板选项
-    final List<Map<String, dynamic>> actionList = [
-      {'action': openCamera, 'text': '相机'},
-      {'action': openGallery, 'text': '相册'},
-      {'action': openGallery, 'text': '视频'}
-    ];
-
-    // 展示动作面板
-    actionSheet.showAction(context,
-        showContent: actionList.map((item) {
-          return ListTile(
-            onTap: item['action'],
-            title: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [Text(item['text'])],
-            ),
-          );
-        }).toList());
+    openMyCamera.tapPickImage(context, (PickedFile iamge) {
+      myRouter.push(context: context, url: 'add-log', params: iamge);
+    });
   }
 
   @override
@@ -102,23 +64,6 @@ class MyApp extends State<MyStatefuWidget> {
             appBar: AppBar(
               toolbarHeight: 50,
               title: Text(title[_currentIndex]),
-              // actions 好像暂时没什么用
-              // actions: <Widget>[
-              //   GestureDetector(
-              //     onTap: () {
-              //       setState(() {
-              //         _isClick = !_isClick;
-              //       });
-              //     },
-              //     child: Padding(
-              //       padding: const EdgeInsets.only(right: 20),
-              //       child: Icon(
-              //         Icons.favorite,
-              //         color: _isClick ? Pink : Colors.white,
-              //       ),
-              //     ),
-              //   ),
-              // ],
               backgroundColor: pink,
             ),
             bottomNavigationBar: BottomNavigationBar(

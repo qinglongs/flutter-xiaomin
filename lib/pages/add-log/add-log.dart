@@ -23,7 +23,7 @@ class AddLog extends State<AddLogState> {
   }
 
   onPressAddImage() {
-    openMyCamera.onTapPickImage(context, (PickedFile image) {
+    openMyCamera.tapPickImage(context, (PickedFile image) {
       setState(() {
         images.add(image);
       });
