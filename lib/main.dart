@@ -4,9 +4,7 @@ import 'package:flutter/rendering.dart';
 import './router.dart';
 import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
-
-const String img =
-    'https://owenkenny.com/wp-content/uploads/2017/09/OKP-empathy-icon.png';
+import './components/tab-bar-page/log-list/log-list.dart';
 
 const List<String> title = ['记事本', '日记', '我的'];
 
@@ -108,16 +106,8 @@ class MyApp extends State<MyStatefuWidget> {
                       backgroundColor: pink,
                       onRefresh: _onRefresh,
                       child: ListView(
-                          children: _list
-                              .map((e) => ListTile(
-                                    onTap: _onTapListItem('第$e件事....'),
-                                    title: Text('第$e件事....'),
-                                    subtitle: Text('2020年11月27日16点47分'),
-                                    leading: CircleAvatar(
-                                      backgroundImage: NetworkImage(img),
-                                    ),
-                                  ))
-                              .toList() as List<Widget>),
+                          children:
+                              renderList(_list, onTapListItem: _onTapListItem)),
                     )),
                 Offstage(
                   offstage: _currentIndex != 1, //这里控制
