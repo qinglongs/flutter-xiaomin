@@ -33,9 +33,9 @@ class OpenCamera {
       // 获取拍照图片
       image = await openMyCamera.openCamera();
 
-      callback(image);
-
-      // myRouter.push(context: context, url: 'add-log', params: image);
+      if (image != null) {
+        callback(image);
+      }
     }
 
     // 打开相册
@@ -46,9 +46,9 @@ class OpenCamera {
       // 获取相册图片
       image = await openMyCamera.openGallery();
 
-      callback(image);
-
-      // myRouter.push(context: context, url: 'add-log', params: image);
+      if (image != null) {
+        callback(image);
+      }
     }
 
     // 动作面板选项
