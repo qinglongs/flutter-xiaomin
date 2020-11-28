@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import './router.dart';
 import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
-import './components/tab-bar-page/log-list/log-list.dart';
+import './home-ui/log-list/log-list.dart';
 
 const List<String> title = ['记事本', '日记', '我的'];
 
