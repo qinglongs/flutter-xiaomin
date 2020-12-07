@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import '../../components/app-bar/app-bar.dart';
 import '../../components/open-camera/open-camera.dart';
+import '../../components/show-action/show-action.dart';
 
 class AddLogState extends StatefulWidget {
   final PickedFile image;
@@ -19,6 +20,7 @@ class AddLog extends State<AddLogState> {
   List<PickedFile> images = [];
 
   AddLog({PickedFile image}) {
+    if (image == null) return;
     images.add(image);
   }
 
@@ -28,6 +30,16 @@ class AddLog extends State<AddLogState> {
         images.add(image);
       });
     });
+  }
+
+  // 点击展示图片
+  _onTapShowImage(PickedFile image) {
+    return () => actionSheet.showModal(context,
+        showContent: Image.file(File(image.path)));
+  }
+
+  _onTapDeleteImage(PickedFile image) {
+    print(image);
   }
 
   @override
@@ -52,28 +64,54 @@ class AddLog extends State<AddLogState> {
             Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Row(
                 children: images.map((item) {
-                  return Container(
-                    margin: EdgeInsets.only(right: 10),
-                    height: 100,
-                    width: 100,
-                    child: Image.file(File(item.path)),
+                  return GestureDetector(
+                    onTap: _onTapShowImage(item),
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              // 给container添加背景图片
+                              image: AssetImage(item.path),
+                              fit: BoxFit.cover),
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: GestureDetector(
+                          onTap: _onTapDeleteImage(item),
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ),
+                    ),
                   );
                 }).toList(),
               ),
               Row(
-                children: [
-                  GestureDetector(
-                    onTap: onPressAddImage,
-                    child: Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(color: Colors.grey[200]),
-                      child: Center(
-                        child: Icon(Icons.add),
-                      ),
-                    ),
-                  )
-                ],
+                children: images.length < 3
+                    ? [
+                        GestureDetector(
+                          onTap: onPressAddImage,
+                          child: Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                                color: Colors.grey[200],
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(5))),
+                            child: Center(
+                              child: Icon(
+                                Icons.add,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      ]
+                    : [],
               )
             ])
           ],

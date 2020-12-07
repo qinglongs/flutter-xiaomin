@@ -51,6 +51,11 @@ class MyApp extends State<MyStatefuWidget> {
     });
   }
 
+  // 长按+号按钮
+  _onLongPressAdd() {
+    myRouter.push(context: context, url: 'add-log');
+  }
+
   @override
   build(BuildContext context) {
     return Container(
@@ -90,9 +95,7 @@ class MyApp extends State<MyStatefuWidget> {
             ),
             floatingActionButton: FloatingActionButton(
                 child: GestureDetector(
-                  onLongPress: () {
-                    myRouter.push(context: context, url: 'add-log');
-                  },
+                  onLongPress: _onLongPressAdd,
                   child: Icon(Icons.add, color: Colors.white),
                 ),
                 backgroundColor: pink,

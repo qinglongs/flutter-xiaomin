@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class MyColor {
   MaterialColor pinkText = Colors.white;
 
-  MaterialColor backgroundColor = Colors.pink[300];
+  MaterialColor themeColor = Colors.pink[300];
 
   MaterialColor title = Colors.black;
 }
