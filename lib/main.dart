@@ -6,6 +6,8 @@ import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
 import './home-ui/log-list/log-list.dart';
 
+import './service/log.dart';
+
 const List<String> title = ['记事本', '日记', '我的'];
 
 // 主题色
@@ -26,15 +28,32 @@ class MyApp extends State<MyStatefuWidget> {
   // bool _isClick = false;
 
   // 记事本列表原始数据
-  List<int> _list = [1, 2, 3, 4, 5, 6, 7, 8];
+  List _list = [
+    {'title': '1111', 'content': '内容'}
+  ];
+
+  Map<String, int> pageParams = {'page': 1, 'size': 10};
+
+  // init
+  @override
+  initState() {
+    super.initState();
+    // getLogList(pageParams).then((res) {
+    // List<Map<String, String>> temp = res['data']['list'];
+    Future.delayed(Duration.zero).then((v) async {
+      var res = await getLogList(pageParams);
+      List temp = res['data']['list'];
+      print(temp);
+      setState(() {
+        _list = temp;
+      });
+    });
+  }
 
   Future<void> _onRefresh() {
     return Future(() {
       final temp = _list;
-      temp.add(_list[_list.length - 1] + 1);
-      setState(() {
-        _list = temp;
-      });
+      print(temp);
     });
   }
 
