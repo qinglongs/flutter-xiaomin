@@ -10,7 +10,7 @@ Future<dynamic> getLogList(Map<String, int> params) async {
     return MapEntry(k, v.toString());
   });
 
-  Uri uri = new Uri.http('192.168.1.123:7002', '/log-list', temp);
+  Uri uri = new Uri.http('192.168.43.104:7001', '/log-list', temp);
   // var uri = 'http://127.0.0.1:7002/log-list';
 
   HttpClientRequest request = await httpClient.getUrl(uri);

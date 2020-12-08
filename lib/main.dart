@@ -24,45 +24,6 @@ class MyApp extends State<MyStatefuWidget> {
   // 底部tab点击索引
   int _currentIndex = 0;
 
-  // 点击右上角小红心
-  // bool _isClick = false;
-
-  // 记事本列表原始数据
-  List _list = [
-    {'title': '1111', 'content': '内容'}
-  ];
-
-  Map<String, int> pageParams = {'page': 1, 'size': 10};
-
-  // init
-  @override
-  initState() {
-    super.initState();
-    // getLogList(pageParams).then((res) {
-    // List<Map<String, String>> temp = res['data']['list'];
-    Future.delayed(Duration.zero).then((v) async {
-      var res = await getLogList(pageParams);
-      List temp = res['data']['list'];
-      print(temp);
-      setState(() {
-        _list = temp;
-      });
-    });
-  }
-
-  Future<void> _onRefresh() {
-    return Future(() {
-      final temp = _list;
-      print(temp);
-    });
-  }
-
-  // 点击记事本列表的某个元素
-  _onTapListItem(String e) {
-    return () => // 路由跳转
-        myRouter.push(context: context, url: 'log-page', params: e);
-  }
-
   // 点击+号按钮
   onPressAdd() {
     openMyCamera.tapPickImage(context, (PickedFile iamge) {
@@ -124,13 +85,7 @@ class MyApp extends State<MyStatefuWidget> {
               children: [
                 Offstage(
                     offstage: _currentIndex != 0, //这里控制
-                    child: RefreshIndicator(
-                      backgroundColor: pink,
-                      onRefresh: _onRefresh,
-                      child: ListView(
-                          children:
-                              renderList(_list, onTapListItem: _onTapListItem)),
-                    )),
+                    child: ListState()),
                 Offstage(
                   offstage: _currentIndex != 1, //这里控制
                   child: Text('日记'),

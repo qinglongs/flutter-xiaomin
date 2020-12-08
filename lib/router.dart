@@ -15,7 +15,7 @@ class MyRouter {
         break;
       case 'log-page':
         return LogPage(
-          routerNum: params as String,
+          params: params,
         );
     }
   }

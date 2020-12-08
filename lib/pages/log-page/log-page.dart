@@ -3,11 +3,12 @@ import '../../components/app-bar/app-bar.dart';
 
 class LogPage extends StatelessWidget {
   // 用来接收路由参数
-  final String routerNum;
+  final Map params;
 
   //构造函数接收参数
-  LogPage({this.routerNum});
+  LogPage({this.params});
 
+  // 点击删除日志
   _onPressedDelete() {
     print('删除');
   }
@@ -15,7 +16,7 @@ class LogPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(context, title: routerNum, action: [
+      appBar: appBar(context, title: params['title'], action: [
         Padding(
           padding: EdgeInsets.all(10),
           child: RaisedButton(
@@ -26,7 +27,7 @@ class LogPage extends StatelessWidget {
       ]),
       body: Center(
         child: Text(
-          '日记详情',
+          params['content'],
           style: TextStyle(fontSize: 20),
         ),
       ),
