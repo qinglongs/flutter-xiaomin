@@ -38,6 +38,7 @@ class AddLog extends State<AddLogState> {
         showContent: Image.file(File(image.path)));
   }
 
+  // 点击删除图片
   _onTapDeleteImage(PickedFile image) {
     print(image);
   }
@@ -47,6 +48,7 @@ class AddLog extends State<AddLogState> {
     return Scaffold(
       appBar: appBar(context, title: '记事本'),
       body: Container(
+        padding: EdgeInsets.only(left: 10, right: 10),
         child: Column(
           children: [
             Container(
@@ -80,9 +82,14 @@ class AddLog extends State<AddLogState> {
                         alignment: Alignment.topRight,
                         child: GestureDetector(
                           onTap: _onTapDeleteImage(item),
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.black,
+                          child: Container(
+                            width: 40,
+                            height: 40,
+                            color: Colors.pink,
+                            child: Icon(
+                              Icons.close,
+                              color: Colors.black,
+                            ),
                           ),
                         ),
                       ),

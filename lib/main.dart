@@ -6,8 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
 import './home-ui/log-list/log-list.dart';
 
-import './service/log.dart';
-
 const List<String> title = ['记事本', '日记', '我的'];
 
 // 主题色
