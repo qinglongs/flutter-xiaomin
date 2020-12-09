@@ -43,27 +43,30 @@ class RenderList extends State<ListState> {
       };
     });
 
-    var res = await getLogList(_pageParams);
+    try {
+      var res = await getLogList(_pageParams);
 
-    // 获取list 数据
-    List temp = res['data']['list'];
+      // 获取list 数据
+      List temp = res['data']['list'];
 
-    // 数据总数
-    int total = res['data']['total'];
+      // 数据总数
+      int total = res['data']['total'];
 
-    // 判断是否还有数据
-    if (_list.length == total) {
-      _isNomore = true;
+      // 判断是否还有数据
+      if (_list.length == total) {
+        _isNomore = true;
+      }
+
+      // 组合数据
+      var concatList = [..._list, ...temp];
+
+      // 更新数据
+      setState(() {
+        _list = refresh == true ? temp : concatList;
+      });
+    } finally {
+      _isFetching = false;
     }
-
-    // 组合数据
-    var concatList = [..._list, ...temp];
-
-    // 更新数据
-    setState(() {
-      _list = refresh == true ? temp : concatList;
-    });
-    _isFetching = false;
   }
 
   Future<void> _onRefresh() {
