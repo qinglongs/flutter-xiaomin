@@ -31,15 +31,16 @@ class MyApp extends State<MyStatefuWidget> {
   // 点击+号按钮
   onPressAdd() {
     openMyCamera.tapPickImage(context, (PickedFile img) {
-      // myRouter.push(context: context, url: 'add-log', params: iamge);
-      Navigator.pushNamed(context, 'add-log', arguments: img);
+      Navigator.pushNamed(context, 'add-log', arguments: img).then((value) {
+        if (value != null) childKey.currentState.fetchList(refresh: true);
+      });
     });
   }
 
   // 长按+号按钮
   _onLongPressAdd() {
     Navigator.pushNamed(context, 'add-log').then((value) {
-      print(value);
+      if (value != null) childKey.currentState.fetchList(refresh: true);
     });
     // myRouter.push(context: context, url: 'add-log');
   }
@@ -93,7 +94,7 @@ class MyApp extends State<MyStatefuWidget> {
               children: [
                 Offstage(
                     offstage: _currentIndex != 0, //这里控制
-                    child: ListState()),
+                    child: ListState(key: childKey)),
                 Offstage(
                   offstage: _currentIndex != 1, //这里控制
                   child: Text('日记'),

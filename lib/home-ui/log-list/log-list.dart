@@ -3,7 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../../service/log.dart';
 
+GlobalKey<RenderList> childKey = GlobalKey();
+
 class ListState extends StatefulWidget {
+  ListState({
+    Key key,
+  }) : super(key: key);
   @override
   State<StatefulWidget> createState() {
     return RenderList();
@@ -23,7 +28,7 @@ class RenderList extends State<ListState> {
   // 记事本分页参数
   Map<String, int> _pageParams = {'page': 1, 'size': 10};
 
-  Future<void> _fetchList({bool refresh}) async {
+  Future<void> fetchList({bool refresh}) async {
     if (_isFetching) return;
 
     if (refresh == true) {
@@ -68,14 +73,14 @@ class RenderList extends State<ListState> {
   }
 
   Future<void> _onRefresh() {
-    return _fetchList(refresh: true);
+    return fetchList(refresh: true);
   }
 
   // 点击记事本列表的某个元素
   _onTapListItem(Map e) {
     return () => // 路由跳转
         Navigator.pushNamed(context, 'log-page', arguments: e).then((value) {
-          if (value != null) _fetchList(refresh: true);
+          if (value != null) fetchList(refresh: true);
         });
   }
 
@@ -84,14 +89,14 @@ class RenderList extends State<ListState> {
   initState() {
     super.initState();
     Future.delayed(Duration.zero).then((v) async {
-      _fetchList(refresh: true);
+      fetchList(refresh: true);
     });
 
     // 监听滚动事件
     _scrollController.addListener(() {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {
-        _fetchList(refresh: false);
+        fetchList(refresh: false);
       }
     });
   }

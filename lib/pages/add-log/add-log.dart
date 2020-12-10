@@ -56,21 +56,24 @@ class AddLog extends State<AddLogState> {
   }
 
   // 点击发送
-  _onPressedSend(context) async {
+  _onPressedSend(context) {
     // 获取到数据
-    print(temp);
-    print(_textValue);
+    return () async {
+      if (_textValue.length == 0) {
+        return actionSheet.showToast(msg: '你都没想说的话，我很难为你做事啊');
+      }
 
-    if (_textValue.length == 0) {
-      return actionSheet.showToast(msg: '你都没想说的话，我很难为你做事啊');
-    }
+      if (_images.length == 0) {
+        return actionSheet.showToast(msg: '图片都没有，我一样很难为你做事');
+      }
 
-    await postAddLog(
-        {'content': _textValue, 'image': _images[0]['image'].path});
+      await postAddLog(
+          {'content': _textValue, 'image': _images[0]['image'].path});
 
-    actionSheet.showToast(msg: '发布成功啦！');
+      actionSheet.showToast(msg: '发布成功啦！');
 
-    Navigator.pop(context, 'xxx');
+      Navigator.pop<String>(context, 'xxx');
+    };
   }
 
   @override
