@@ -26,6 +26,7 @@ class ActionSheet {
         });
   }
 
+  // 展示确认弹窗
   void showConfirm(BuildContext context,
       {String okText = '确认',
       String cancelText = '取消',
@@ -40,7 +41,12 @@ class ActionSheet {
             titleTextStyle: TextStyle(color: Colors.black),
             content: Text(content),
             actions: [
-              FlatButton(onPressed: onConfrim, child: Text(okText)),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    onConfrim();
+                  },
+                  child: Text(okText)),
               FlatButton(
                   onPressed: () {
                     Navigator.pop(context);

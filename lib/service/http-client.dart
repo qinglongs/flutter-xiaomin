@@ -3,7 +3,8 @@ import 'dart:convert';
 import 'dart:core';
 import '../components/show-action/show-action.dart';
 
-const String HOST = '192.168.43.104:7001';
+// const String HOST = '192.168.43.104:7001';
+const String HOST = '192.168.1.123:7001';
 
 // http请求基础类
 class API {
@@ -20,47 +21,6 @@ class API {
     return temp;
   }
 
-  // get请求
-  Future<dynamic> getData({Map query, String url}) async {
-    Uri uri = new Uri.http(HOST, url, _formatData(query));
-
-    HttpClientRequest request = await _httpClient.getUrl(uri);
-
-    HttpClientResponse response = await request.close();
-
-    String json = await response.transform(utf8.decoder).join();
-
-    return jsonDecode(json);
-  }
-
-  // delete请求
-  Future<dynamic> delete<T>(
-      {Map<String, T> query, String url, Map<String, String> headers}) async {
-    Uri uri = Uri.http(HOST, url, _formatData(query));
-
-    HttpClientRequest request = await _httpClient.deleteUrl(uri);
-
-    HttpClientResponse response = await request.close();
-
-    String json = await response.transform(utf8.decoder).join();
-
-    return jsonDecode(json);
-  }
-
-  // post请求
-  Future<dynamic> post<T>(
-      {Map<String, T> data, String url, Map<String, String> headers}) async {
-    Uri uri = Uri.http(HOST, url);
-
-    HttpClientRequest request = await _httpClient.postUrl(uri);
-
-    HttpClientResponse response = await request.close();
-
-    String json = await response.transform(utf8.decoder).join();
-
-    return jsonDecode(json);
-  }
-
   /// 公共http请求方法
   Future<dynamic> fetch(String method, String url,
       {Map<String, dynamic> query, Map<String, dynamic> data}) async {
@@ -68,7 +28,7 @@ class API {
 
     HttpClientRequest request = await _httpClient.openUrl(method, uri);
 
-    if ((method == 'POST' || method == 'DELETE') && data != null) {
+    if ((['POST', 'DELETE', 'PUT'].indexOf(method) > -1) && data != null) {
       // 配置请求头
       request.headers.contentType =
           new ContentType('application', 'json', charset: 'utf-8');

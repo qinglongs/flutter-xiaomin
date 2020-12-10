@@ -15,6 +15,7 @@ class LogPage extends StatelessWidget {
     return () {
       actionSheet.showConfirm(context, content: '确认删除?', onConfrim: () async {
         await deleteLog({'id': params['id']});
+        actionSheet.showToast(msg: '删除成功！');
         Navigator.pop(context);
       });
     };
