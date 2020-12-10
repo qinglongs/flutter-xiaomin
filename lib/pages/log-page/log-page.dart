@@ -4,30 +4,33 @@ import '../../components/show-action/show-action.dart';
 import '../../service/log.dart';
 
 class LogPage extends StatelessWidget {
-  // 用来接收路由参数
-  final Map params;
-
-  //构造函数接收参数
-  LogPage({this.params});
-
   // 点击删除日志
-  _onPressedDelete(context) {
+  _onPressedDelete(context, {Map params}) {
     return () {
       actionSheet.showConfirm(context, content: '确认删除?', onConfrim: () async {
         await deleteLog({'id': params['id']});
         actionSheet.showToast(msg: '删除成功！');
-        Navigator.pop(context);
+        Navigator.pop(context, 'xxx');
       });
+    };
+  }
+
+  _onTapPreviewImage(BuildContext context, Map params) {
+    return () {
+      actionSheet.showModal(context, showContent: Image.asset(params['image']));
     };
   }
 
   @override
   Widget build(BuildContext context) {
+    // 接收路由参数
+    Map params = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
         appBar: appBar(context, title: params['title'], action: [
           IconButton(
             icon: Icon(Icons.delete_forever),
-            onPressed: _onPressedDelete(context),
+            onPressed: _onPressedDelete(context, params: params),
           )
         ]),
         // https://book.flutterchina.club/chapter6/intro.html
@@ -39,17 +42,25 @@ class LogPage extends StatelessWidget {
               child: Column(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: Container(
-                      child: Image.network(
-                        params['image'],
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                      borderRadius: BorderRadius.circular(5),
+                      child: SizedBox(
+                          width: double.infinity,
+                          height: 300,
+                          child: GestureDetector(
+                            onTap: _onTapPreviewImage(context, params),
+                            child: params['image'].indexOf('http') > -1
+                                ? Image.network(
+                                    params['image'],
+                                    fit: BoxFit.cover,
+                                  )
+                                : Image.asset(
+                                    params['image'],
+                                    fit: BoxFit.cover,
+                                  ),
+                          ))),
                   Container(
                     margin: EdgeInsets.only(top: 10),
-                    child: Text(params['content'] * 10000),
+                    child: Text(params['content']),
                   )
                 ],
               ),

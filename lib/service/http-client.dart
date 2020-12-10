@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'dart:core';
 import '../components/show-action/show-action.dart';
 
-// const String HOST = '192.168.43.104:7001';
-const String HOST = '192.168.1.123:7001';
+const String HOST = '192.168.43.104:7001';
+// const String HOST = '192.168.1.123:7001';
 
 // http请求基础类
 class API {

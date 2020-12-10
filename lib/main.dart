@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import './router.dart';
 import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
 import './home-ui/log-list/log-list.dart';
+import './pages/log-page/log-page.dart';
+import './pages/add-log/add-log.dart';
 
 const List<String> title = ['记事本', '日记', '我的'];
+
+var routes = {
+  'log-page': (context) => LogPage(),
+  'add-log': (context) => AddLogState(),
+};
 
 // 主题色
 final pink = Colors.pink[300];
@@ -24,14 +30,18 @@ class MyApp extends State<MyStatefuWidget> {
 
   // 点击+号按钮
   onPressAdd() {
-    openMyCamera.tapPickImage(context, (PickedFile iamge) {
-      myRouter.push(context: context, url: 'add-log', params: iamge);
+    openMyCamera.tapPickImage(context, (PickedFile img) {
+      // myRouter.push(context: context, url: 'add-log', params: iamge);
+      Navigator.pushNamed(context, 'add-log', arguments: img);
     });
   }
 
   // 长按+号按钮
   _onLongPressAdd() {
-    myRouter.push(context: context, url: 'add-log');
+    Navigator.pushNamed(context, 'add-log').then((value) {
+      print(value);
+    });
+    // myRouter.push(context: context, url: 'add-log');
   }
 
   @override
@@ -101,6 +111,7 @@ void main() {
   runApp(MaterialApp(
     title: 'my app',
     home: MyStatefuWidget(),
+    routes: routes,
     theme: ThemeData(
         backgroundColor: Colors.white,
         accentColor: Colors.white,

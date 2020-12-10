@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../../service/log.dart';
 
-import '../../router.dart';
-
 class ListState extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -76,7 +74,9 @@ class RenderList extends State<ListState> {
   // 点击记事本列表的某个元素
   _onTapListItem(Map e) {
     return () => // 路由跳转
-        myRouter.push(context: context, url: 'log-page', params: e);
+        Navigator.pushNamed(context, 'log-page', arguments: e).then((value) {
+          if (value != null) _fetchList(refresh: true);
+        });
   }
 
   // init
@@ -105,6 +105,7 @@ class RenderList extends State<ListState> {
         controller: _scrollController,
         children: _list.map((dynamic e) {
           return ListTile(
+            key: Key('${e['id']}'),
             onTap: _onTapListItem(e),
             title: Text('${e['title']}${e['id']}'),
             subtitle: Text(e['content']),
@@ -113,10 +114,15 @@ class RenderList extends State<ListState> {
               height: 70,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
-                child: Image.network(
-                  e['image'],
-                  fit: BoxFit.fill,
-                ),
+                child: e['image'].indexOf('http') > -1
+                    ? Image.network(
+                        e['image'],
+                        fit: BoxFit.fill,
+                      )
+                    : Image.asset(
+                        e['image'],
+                        fit: BoxFit.cover,
+                      ),
               ),
             ),
           );

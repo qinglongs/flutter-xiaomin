@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../router.dart';
 import '../show-action/show-action.dart';
 
 class OpenCamera {
@@ -28,7 +27,7 @@ class OpenCamera {
     // 打开相机
     Future<void> openCamera() async {
       // 关闭弹窗
-      myRouter.goback(context);
+      Navigator.pop(context);
 
       // 获取拍照图片
       image = await openMyCamera.openCamera();
@@ -41,7 +40,7 @@ class OpenCamera {
     // 打开相册
     Future<void> openGallery() async {
       // 关闭弹窗
-      myRouter.goback(context);
+      Navigator.pop(context);
 
       // 获取相册图片
       image = await openMyCamera.openGallery();

@@ -36,6 +36,8 @@ dependencies:
   image_picker: ^0.6.7+14
   # https://pub.dev/packages/fluttertoast
   fluttertoast: ^7.1.4
+  # https://pub.dev/packages/uuid
+  uuid: 2.2.2
 
 dev_dependencies:
   flutter_test:
