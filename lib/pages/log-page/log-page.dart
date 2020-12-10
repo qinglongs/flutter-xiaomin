@@ -59,8 +59,9 @@ class LogPage extends StatelessWidget {
                                   ),
                           ))),
                   Container(
+                    alignment: Alignment.bottomLeft,
                     margin: EdgeInsets.only(top: 10),
-                    child: Text(params['content']),
+                    child: Text(params['content'] * 100),
                   )
                 ],
               ),

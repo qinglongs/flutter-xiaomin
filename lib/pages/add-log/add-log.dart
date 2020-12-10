@@ -128,13 +128,31 @@ class AddLog extends State<AddLogState> {
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Container(
-                                        child: SizedBox(
-                                      height: 100,
-                                      width: 100,
-                                      child: Image.asset(
-                                        item['image'].path,
-                                        fit: BoxFit.cover,
-                                      ),
+                                        child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Container(
+                                          height: 100,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: AssetImage(
+                                                    item['image'].path,
+                                                  ))),
+                                        ),
+                                        Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: InkWell(
+                                            child: Icon(
+                                              Icons.close,
+                                              color: Colors.white,
+                                            ),
+                                            onTap: _onTapDeleteImage(i),
+                                          ),
+                                        ),
+                                      ],
                                     )),
                                   )),
                               SizedBox(width: 10),

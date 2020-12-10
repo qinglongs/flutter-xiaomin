@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../service/log.dart';
 
+// https://blog.ziyiu.com/2019/12/02/Flutter/flutter%E7%88%B6%E7%BB%84%E4%BB%B6%E8%B0%83%E7%94%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E6%96%B9%E6%B3%95/
 GlobalKey<RenderList> childKey = GlobalKey();
 
 class ListState extends StatefulWidget {
