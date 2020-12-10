@@ -25,12 +25,9 @@ class LogPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: appBar(context, title: params['title'], action: [
-          Padding(
-            padding: EdgeInsets.all(10),
-            child: RaisedButton(
-              child: Text('删除'),
-              onPressed: _onPressedDelete(context),
-            ),
+          IconButton(
+            icon: Icon(Icons.delete_forever),
+            onPressed: _onPressedDelete(context),
           )
         ]),
         // https://book.flutterchina.club/chapter6/intro.html
