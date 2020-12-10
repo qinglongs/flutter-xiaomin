@@ -70,7 +70,7 @@ class RenderList extends State<ListState> {
   }
 
   Future<void> _onRefresh() {
-    return _fetchList(refresh: false);
+    return _fetchList(refresh: true);
   }
 
   // 点击记事本列表的某个元素
@@ -108,7 +108,17 @@ class RenderList extends State<ListState> {
             onTap: _onTapListItem(e),
             title: Text('${e['title']}${e['id']}'),
             subtitle: Text(e['content']),
-            leading: Image.network(e['image']),
+            leading: SizedBox(
+              width: 80,
+              height: 70,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  e['image'],
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
           );
         }).toList(),
       ),

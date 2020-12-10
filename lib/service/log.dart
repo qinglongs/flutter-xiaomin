@@ -1,23 +1,14 @@
-import 'dart:io';
-import 'dart:convert';
-import 'dart:core';
+import './http-client.dart';
 
-HttpClient httpClient = new HttpClient();
-
+// 获取日志列表
 Future<dynamic> getLogList(Map<String, int> params) async {
-  // 格式化请求数据
-  Map<String, String> temp = params.map<String, String>((k, v) {
-    return MapEntry(k, v.toString());
-  });
+  return api.getData(
+    url: '/log-list',
+    query: params,
+  );
+}
 
-  Uri uri = new Uri.http('192.168.43.104:7001', '/log-list', temp);
-  // var uri = 'http://127.0.0.1:7002/log-list';
-
-  HttpClientRequest request = await httpClient.getUrl(uri);
-
-  HttpClientResponse response = await request.close();
-
-  String json = await response.transform(utf8.decoder).join();
-
-  return jsonDecode(json);
+//删除某一条日志
+Future<dynamic> deleteLog(Map<String, String> params) {
+  return api.delete<String>(url: '/log-list', query: params);
 }
