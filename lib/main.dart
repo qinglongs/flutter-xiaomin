@@ -3,10 +3,13 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
-import './components/open-camera/open-camera.dart';
-import './home-ui/log-list/log-list.dart';
 import './pages/log-page/log-page.dart';
 import './pages/add-log/add-log.dart';
+
+import './home-ui/log-list/log-list.dart';
+import './home-ui/drawer/drawer.dart';
+
+import './components/open-camera/open-camera.dart';
 
 import './utils/theme-config.dart';
 
@@ -60,6 +63,7 @@ class MyAppState extends State<MyApp> {
               toolbarHeight: 50,
               title: Text(title[_currentIndex]),
             ),
+            drawer: MyDrawer(),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: _currentIndex,
               mouseCursor: MouseCursor.defer,
@@ -115,16 +119,5 @@ void main() {
       title: 'my app',
       home: MyApp(),
       routes: routes,
-      theme: themeConfig(Colors.black,
-          scaffoldBackgroundColor: Colors.black,
-          body: TextStyle(
-            color: Colors.white,
-          ),
-          subTitle: TextStyle(
-            color: Colors.white,
-          ),
-          headline: TextStyle(
-            color: Colors.white,
-          ),
-          button: TextStyle(color: Colors.white))));
+      theme: themeConfig(Colors.pink[300])));
 }
