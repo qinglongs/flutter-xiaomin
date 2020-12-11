@@ -114,7 +114,10 @@ class RenderList extends State<ListState> {
             key: Key('${e['id']}'),
             onTap: _onTapListItem(e),
             title: Text('${e['title']}${e['id']}'),
-            subtitle: Text(e['content']),
+            subtitle: Text(
+              e['content'],
+              // style: TextStyle(color: Colors.grey),
+            ),
             leading: SizedBox(
               width: 80,
               height: 70,
