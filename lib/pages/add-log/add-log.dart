@@ -20,8 +20,6 @@ var temp = [];
 class AddLog extends State<AddLogState> {
   List<Map> _images = [];
 
-  bool _isFrist = true;
-
   String _textValue = '';
 
   onPressAddImage() {
@@ -77,17 +75,19 @@ class AddLog extends State<AddLogState> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  void didChangeDependencies() {
+    // 在这里面处理同步逻辑不需要setState
+    super.didChangeDependencies();
+
     // 接收路由参数
     PickedFile file = ModalRoute.of(context).settings.arguments;
 
-    // 只有第一次进入才会添加照片
-    if (file != null && _isFrist) {
-      setState(() {
-        _isFrist = false;
-        _images.add({'key': Uuid().hashCode, 'image': file});
-      });
-    }
+    // 更新图片
+    _images.add({'key': Uuid().hashCode, 'image': file});
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context, title: '记事本', action: [
         IconButton(
