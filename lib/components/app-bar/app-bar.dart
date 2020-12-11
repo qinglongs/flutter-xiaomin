@@ -5,6 +5,5 @@ Widget appBar(BuildContext context, {String title, List<Widget> action}) {
     toolbarHeight: 50,
     title: Text(title),
     actions: action,
-    backgroundColor: Colors.pink[300],
   );
 }

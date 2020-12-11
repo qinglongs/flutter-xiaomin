@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:image_picker/image_picker.dart';
 import './components/open-camera/open-camera.dart';
@@ -17,14 +18,14 @@ var routes = {
 // 主题色
 final pink = Colors.pink[300];
 
-class MyStatefuWidget extends StatefulWidget {
+class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return MyApp();
+    return MyAppState();
   }
 }
 
-class MyApp extends State<MyStatefuWidget> {
+class MyAppState extends State<MyApp> {
   // 底部tab点击索引
   int _currentIndex = 0;
 
@@ -56,12 +57,10 @@ class MyApp extends State<MyStatefuWidget> {
             appBar: AppBar(
               toolbarHeight: 50,
               title: Text(title[_currentIndex]),
-              backgroundColor: pink,
             ),
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: _currentIndex,
               mouseCursor: MouseCursor.defer,
-              selectedItemColor: pink,
               onTap: (int item) {
                 setState(() {
                   _currentIndex = item;
@@ -82,13 +81,14 @@ class MyApp extends State<MyStatefuWidget> {
                 ),
               ],
             ),
-            floatingActionButton: FloatingActionButton(
-                child: GestureDetector(
-                  onLongPress: _onLongPressAdd,
-                  child: Icon(Icons.add, color: Colors.white),
-                ),
-                backgroundColor: pink,
-                onPressed: onPressAdd),
+            floatingActionButton: _currentIndex == 0
+                ? FloatingActionButton(
+                    child: GestureDetector(
+                      onLongPress: _onLongPressAdd,
+                      child: Icon(Icons.add, color: Colors.white),
+                    ),
+                    onPressed: onPressAdd)
+                : null,
             // 实现tab栏切换效果
             body: Stack(
               children: [
@@ -108,17 +108,64 @@ class MyApp extends State<MyStatefuWidget> {
   }
 }
 
+ThemeData themeConfig(
+    {Color themeColor,
+    Color scaffoldBackgroundColor = Colors.white,
+    TextStyle body = const TextStyle(color: Colors.black),
+    TextStyle subTitle = const TextStyle(color: Colors.black),
+    TextStyle headline = const TextStyle(color: Colors.black),
+    TextStyle button = const TextStyle(color: Colors.black)}) {
+  // 默认主题色
+  // var color = themeColor == null ? Colors.pink[300] : themeColor;
+
+  return ThemeData(
+      scaffoldBackgroundColor: scaffoldBackgroundColor,
+      primaryColor: themeColor,
+      primaryColorBrightness: Brightness.dark,
+      primaryColorDark: themeColor,
+      primaryColorLight: themeColor,
+      backgroundColor: themeColor,
+      iconTheme: IconThemeData(color: themeColor),
+      buttonColor: themeColor,
+      buttonTheme: ButtonThemeData(buttonColor: themeColor),
+      appBarTheme: AppBarTheme(color: themeColor),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: themeColor,
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.grey[300]),
+      textTheme: TextTheme(
+        bodyText1: body,
+        bodyText2: body,
+        subtitle1: subTitle,
+        subtitle2: subTitle,
+        headline1: headline,
+        headline2: headline,
+        headline3: headline,
+        headline4: headline,
+        headline5: headline,
+        headline6: headline,
+        button: button,
+      ),
+      floatingActionButtonTheme:
+          FloatingActionButtonThemeData(backgroundColor: themeColor));
+}
+
 void main() {
   runApp(MaterialApp(
-    title: 'my app',
-    home: MyStatefuWidget(),
-    routes: routes,
-    theme: ThemeData(
-        backgroundColor: Colors.white,
-        accentColor: Colors.white,
-        textTheme: TextTheme(
-          // ignore: deprecated_member_use
-          title: TextStyle(color: Colors.white),
-        )),
-  ));
+      title: 'my app',
+      home: MyApp(),
+      routes: routes,
+      theme: themeConfig(
+          themeColor: Colors.black,
+          scaffoldBackgroundColor: Colors.black,
+          body: TextStyle(
+            color: Colors.white,
+          ),
+          subTitle: TextStyle(
+            color: Colors.white,
+          ),
+          headline: TextStyle(
+            color: Colors.white,
+          ),
+          button: TextStyle(color: Colors.white))));
 }

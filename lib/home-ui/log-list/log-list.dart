@@ -105,7 +105,7 @@ class RenderList extends State<ListState> {
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      backgroundColor: Colors.pink[300],
+      // backgroundColor: Colors.pink[300],
       onRefresh: _onRefresh,
       child: ListView(
         controller: _scrollController,
@@ -123,7 +123,7 @@ class RenderList extends State<ListState> {
                 child: e['image'].indexOf('http') > -1
                     ? Image.network(
                         e['image'],
-                        fit: BoxFit.fill,
+                        fit: BoxFit.cover,
                       )
                     : Image.asset(
                         e['image'],
