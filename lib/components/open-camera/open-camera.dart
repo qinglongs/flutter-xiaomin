@@ -54,7 +54,6 @@ class OpenCamera {
     final List<Map<String, dynamic>> actionList = [
       {'action': openCamera, 'text': '相机'},
       {'action': openGallery, 'text': '相册'},
-      {'action': openGallery, 'text': '视频'}
     ];
 
     // 展示动作面板
