@@ -13,9 +13,9 @@ import './components/open-camera/open-camera.dart';
 
 import './utils/theme-config.dart';
 
-const List<String> title = ['记事本', '日记', '我的'];
+const List<String> title = ['日记', '日记', '我的'];
 
-var routes = {
+final routes = {
   'log-page': (context) => LogPage(),
   'add-log': (context) => AddLogState(),
 };
@@ -31,11 +31,11 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  // 底部tab点击索引
+  // 底部tab索引
   int _currentIndex = 0;
 
   // 点击+号按钮
-  onPressAdd() {
+  _onPressAdd() {
     openMyCamera.tapPickImage(context, (PickedFile img) {
       Navigator.pushNamed(context, 'add-log', arguments: img).then((value) {
         if (value != null) childKey.currentState.fetchList(refresh: true);
@@ -48,7 +48,6 @@ class MyAppState extends State<MyApp> {
     Navigator.pushNamed(context, 'add-log').then((value) {
       if (value != null) childKey.currentState.fetchList(refresh: true);
     });
-    // myRouter.push(context: context, url: 'add-log');
   }
 
   @override
@@ -64,6 +63,7 @@ class MyAppState extends State<MyApp> {
               title: Text(title[_currentIndex]),
             ),
             drawer: MyDrawer(),
+            // 底部导航栏
             bottomNavigationBar: BottomNavigationBar(
               currentIndex: _currentIndex,
               mouseCursor: MouseCursor.defer,
@@ -75,11 +75,11 @@ class MyAppState extends State<MyApp> {
               items: [
                 BottomNavigationBarItem(
                   icon: Icon(Icons.home),
-                  label: '记事本',
+                  label: '日记',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.date_range),
-                  label: '日记',
+                  label: '账单',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.face),
@@ -87,20 +87,21 @@ class MyAppState extends State<MyApp> {
                 ),
               ],
             ),
+            // 在首页展示加号按钮
             floatingActionButton: _currentIndex == 0
                 ? FloatingActionButton(
                     child: GestureDetector(
                       onLongPress: _onLongPressAdd,
                       child: Icon(Icons.add, color: Colors.white),
                     ),
-                    onPressed: onPressAdd)
+                    onPressed: _onPressAdd)
                 : null,
             // 实现tab栏切换效果
             body: Stack(
               children: [
                 Offstage(
                     offstage: _currentIndex != 0, //这里控制
-                    child: ListState(key: childKey)),
+                    child: Loglist(key: childKey)),
                 Offstage(
                   offstage: _currentIndex != 1, //这里控制
                   child: Text('日记'),
