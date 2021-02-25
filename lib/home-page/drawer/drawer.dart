@@ -19,7 +19,7 @@ class MyDrawerState extends State<MyDrawer> {
     return Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
         padding: EdgeInsets.all(10),
-        width: 300,
+        width: 350,
         height: double.infinity,
         color: Colors.pink[300],
         child: Scrollbar(
