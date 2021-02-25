@@ -1,6 +1,6 @@
 # myapp
 
-A new Flutter project.
+小敏日记 App
 
 ## Getting Started
 
