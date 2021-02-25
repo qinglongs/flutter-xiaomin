@@ -49,6 +49,11 @@ class MyAppState extends State<MyApp> {
     });
   }
 
+  // 点击账单页的浮动按钮按钮
+  _onPressCreate() {
+    print('添加账单');
+  }
+
   @override
   build(BuildContext context) {
     // 浮动按钮list
@@ -61,10 +66,10 @@ class MyAppState extends State<MyApp> {
           onPressed: _onPressAdd),
       FloatingActionButton(
           child: GestureDetector(
-            onLongPress: _onLongPressAdd,
+            onLongPress: _onPressCreate,
             child: Icon(Icons.create, color: Colors.white),
           ),
-          onPressed: _onPressAdd),
+          onPressed: _onPressCreate),
       null
     ];
 
