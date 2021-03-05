@@ -21,7 +21,7 @@ class MyDrawerState extends State<MyDrawer> {
         padding: EdgeInsets.all(10),
         width: 350,
         height: double.infinity,
-        color: Colors.pink[300],
+        color: Colors.black54,
         child: Scrollbar(
           child: SingleChildScrollView(
             child: Column(
