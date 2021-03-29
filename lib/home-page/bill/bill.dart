@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'components/bill-item/bill-item.dart';
+import 'components/Bill-item/Bill-item.dart';
 
 class Bill extends StatefulWidget {
   Widget children;
-
-  Bill(this.children);
 
   @override
   State<StatefulWidget> createState() {
