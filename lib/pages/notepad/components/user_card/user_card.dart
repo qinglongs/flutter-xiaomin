@@ -7,7 +7,7 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-        height: 200,
+        height: 100,
         width: double.infinity,
         color: const Color.fromRGBO(253, 126, 126, 1),
         child: Text('用户卡片'));

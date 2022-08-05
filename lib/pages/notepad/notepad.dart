@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/pages/notepad/components/background_image/background_image.dart';
+import 'package:flutter_xiaomin/pages/notepad/components/user_card/user_card.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 
 import './components/background_image/background_image.dart';
@@ -17,7 +18,12 @@ class Notepad extends StatelessWidget {
     return Flex(
       direction: Axis.vertical,
       children: [
-        BackgroundImage(),
+        Stack(children: const [
+          Positioned(child: BackgroundImage()),
+          Positioned(
+            child: UserCard(),
+          )
+        ]),
         Expanded(
             flex: 1,
             child: Column(

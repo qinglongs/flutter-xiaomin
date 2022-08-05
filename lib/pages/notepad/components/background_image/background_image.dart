@@ -6,10 +6,10 @@ class BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Container(
+    return  const SizedBox(
         height: 232,
         width: double.infinity,
-        color: const Color.fromRGBO(253, 126, 126, 1),
-        child: Center(child: Text('用户卡片')));
+        child:Image(image: AssetImage('image/head-background.png'),fit: BoxFit.fill,),
+    );
   }
 }
