@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
-import './pages/notepad.dart';
-import './pages/record.dart';
-import './pages/bill.dart';
-import './pages/target.dart';
+import 'pages/notepad/notepad.dart';
+import 'pages/record/record.dart';
+import 'pages/bill/bill.dart';
+import 'pages/target/target.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,7 +39,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
-
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -51,7 +49,6 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
@@ -60,13 +57,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   int _currentIndex = 0;
 
-  static const List<Widget> _bottomBarOptions = <Widget>[
+  static const List<Widget> _bottomNavigationBarOptions = <Widget>[
      Notepad(),
      Record(),
      Bill(),
      Target()
   ];
-
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
           // Center is a layout widget. It takes a single child and positions it
           // in the middle of the parent.
-          child: _bottomBarOptions.elementAt(_currentIndex),
+          child: _bottomNavigationBarOptions.elementAt(_currentIndex),
         ),
       ),
     );
