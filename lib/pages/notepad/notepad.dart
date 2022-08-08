@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/pages/notepad/components/background_image/background_image.dart';
 import 'package:flutter_xiaomin/pages/notepad/components/user_card/user_card.dart';
-import 'package:flutter_xiaomin/utils/shard.dart';
 
 import './components/background_image/background_image.dart';
+import './components/no_data/no_data.dart';
 
 import '../../utils/shard.dart';
 
@@ -13,44 +13,32 @@ class Notepad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _onPressed() {}
-
-    return Flex(
-      direction: Axis.vertical,
+    final size = MediaQuery.of(context).size;
+    return Stack(
+      fit: StackFit.expand,
+      clipBehavior: Clip.none,
       children: [
-        Stack(children: const [
-          Positioned(child: BackgroundImage()),
-          Positioned(
-            child: UserCard(),
-          )
-        ]),
-        Expanded(
-            flex: 1,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SvgUtils.svg('notepad-no-data'),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: const Text('发布你的第一篇笔记',
-                      style:
-                          TextStyle(color: Color.fromRGBO(127, 124, 124, 1))),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                  child: TextButton(
-                      style: TextButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20)),
-                        padding: const EdgeInsets.all(10),
-                        primary: Colors.white,
-                        textStyle: const TextStyle(fontSize: 15),
-                        backgroundColor: const Color.fromRGBO(253, 126, 126, 1),
-                      ),
-                      onPressed: _onPressed,
-                      child: const Text('立即发布')),
-                )
-              ],
+        Positioned(
+          top: 0,
+          left: 0,
+          child: SizedBox(
+            width: size.width,
+            height: 232,
+            child: const BackgroundImage(),
+          ),
+        ),
+        const Positioned(
+          top: 196,
+          left: 0,
+          child: UserCard(),
+        ),
+        Positioned(
+            top: 232,
+            left: 0,
+            child: SizedBox(
+              width: size.width,
+              height: size.height - 200,
+              child: const NoData(),
             ))
       ],
     );

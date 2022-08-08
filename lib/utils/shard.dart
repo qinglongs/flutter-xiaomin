@@ -14,3 +14,4 @@ class SvgUtils {
     return SvgPicture.asset(SvgUtils.svgPath(name));
   }
 }
+
