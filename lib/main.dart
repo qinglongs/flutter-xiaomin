@@ -4,7 +4,7 @@ import 'pages/notepad/notepad.dart';
 import 'pages/record/record.dart';
 import 'pages/bill/bill.dart';
 import 'pages/target/target.dart';
-import 'pages/notepad/add-note/add-note.dart';
+import 'pages/notepad/add_note/add_note.dart';
 
 void main() {
   runApp(const MyApp());

@@ -6,8 +6,6 @@ import 'package:flutter_xiaomin/pages/notepad/components/user_card/user_card.dar
 import './components/background_image/background_image.dart';
 import './components/no_data/no_data.dart';
 
-import '../../utils/shard.dart';
-
 class Notepad extends StatelessWidget {
   const Notepad({Key? key}) : super(key: key);
 
