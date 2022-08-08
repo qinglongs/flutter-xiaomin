@@ -5,11 +5,15 @@ class BackgroundImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     // TODO: implement build
-    return  const SizedBox(
-        height: 232,
-        width: double.infinity,
-        child:Image(image: AssetImage('image/head-background.png'),fit: BoxFit.fill,),
+    return SizedBox(
+      height: 232,
+      width: size.width,
+      child: const Image(
+        image: AssetImage('image/head-background.png'),
+        fit: BoxFit.fill,
+      ),
     );
   }
 }

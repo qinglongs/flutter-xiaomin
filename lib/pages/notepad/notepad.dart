@@ -13,33 +13,30 @@ class Notepad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+
     return Stack(
       fit: StackFit.expand,
       clipBehavior: Clip.none,
-      children: [
+      children: const [
+        //背景
         Positioned(
           top: 0,
           left: 0,
-          child: SizedBox(
-            width: size.width,
-            height: 232,
-            child: const BackgroundImage(),
-          ),
+          child: BackgroundImage(),
         ),
-        const Positioned(
+        //用户卡片
+        Positioned(
           top: 196,
           left: 0,
           child: UserCard(),
         ),
+        // 无数据展示
         Positioned(
             top: 232,
             left: 0,
-            child: SizedBox(
-              width: size.width,
-              height: size.height - 200,
-              child: const NoData(),
-            ))
+            child: NoData(),
+        ),
+
       ],
     );
   }
