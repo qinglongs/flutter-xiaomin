@@ -13,8 +13,9 @@ class AddNote extends StatelessWidget {
       title: const Text('添加事件'),
       actions: <Widget>[
         IconButton(
-          icon: const Icon(Icons.add_alert),
-          tooltip: 'Show Snackbar',
+          icon: const Icon(
+            Icons.more_vert,
+          ),
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('This is a snackbar')));
