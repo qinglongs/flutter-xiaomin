@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/components/upload_img/upload_img.dart';
 
 class AddNote extends StatelessWidget {
   const AddNote({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -24,6 +26,7 @@ class AddNote extends StatelessWidget {
         ],
       ),
       body: Container(
+        padding: const EdgeInsets.all(10),
         decoration: const BoxDecoration(
             gradient: LinearGradient(
           colors: [
@@ -33,10 +36,40 @@ class AddNote extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         )),
-        width: 1000,
-        height: 1000,
+        width: size.width,
+        height: size.height,
         child: Column(
-          children: [],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const TextField(
+              maxLines: 10,
+              decoration: InputDecoration(
+                hintText: "在这里写下想要记录等事件吧 ...",
+              ),
+            ),
+            Container(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '图片',
+                    ),
+                    UploadImage(),
+                  ],
+                )),
+            Container(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      '图片',
+                    ),
+                    UploadImage(),
+                  ],
+                )),
+          ],
         ),
       ),
     );
