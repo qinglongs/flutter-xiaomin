@@ -7,6 +7,6 @@ class GoalsType {
 }
 
 /// ### 获取目标类型选项
-Future<SuccessResponse<GoalsType>> getGoalTypesOptions() {
-  return fetchClient.get<GoalsType>('/api/v1/manage/goal-types');
+Future<SuccessResponse<List<GoalsType>>> getGoalTypesOptions() {
+  return manageFetch.get<List<GoalsType>>('/api/v1/manage/goal-types');
 }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'utils/http/http.dart';
-
 import 'pages/notepad/notepad.dart';
 import 'pages/record/record.dart';
 import 'pages/bill/bill.dart';
