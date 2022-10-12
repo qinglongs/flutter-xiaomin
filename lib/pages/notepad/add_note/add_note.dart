@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/components/upload_img/upload_img.dart';
+import 'package:flutter_xiaomin/components/tag/tag.dart';
 
 class AddNote extends StatelessWidget {
   const AddNote({Key? key}) : super(key: key);
@@ -48,25 +48,39 @@ class AddNote extends StatelessWidget {
               ),
             ),
             Container(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text(
-                      '图片',
+                    SizedBox(
+                      child: Text('图片'),
+                      height: 30,
                     ),
                     UploadImage(),
                   ],
                 )),
             Container(
-                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text(
-                      '图片',
+                    SizedBox(
+                      child: Text('视频'),
+                      height: 30,
                     ),
                     UploadImage(),
+                  ],
+                )),
+            Container(
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    SizedBox(
+                      child: Text('事件类型'),
+                      height: 30,
+                    ),
+                    Tag()
                   ],
                 )),
           ],

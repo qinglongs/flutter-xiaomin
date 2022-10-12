@@ -24,7 +24,7 @@ class NoDataState extends State<NoData> {
     // TODO: implement build
     return SizedBox(
       width: size.width,
-      height: size.height - 200,
+      height: size.height - 250,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -40,7 +40,7 @@ class NoDataState extends State<NoData> {
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  padding: const EdgeInsets.all(10),
+                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
                   primary: Colors.white,
                   textStyle: const TextStyle(fontSize: 15),
                   backgroundColor: const Color.fromRGBO(253, 126, 126, 1),

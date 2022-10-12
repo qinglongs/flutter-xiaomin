@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'pages/notepad/notepad.dart';
 import 'pages/record/record.dart';
@@ -8,6 +9,18 @@ import 'pages/notepad/add_note/add_note.dart';
 
 void main() {
   runApp(const MyApp());
+
+  // 主题配置
+  SystemUiOverlayStyle uiStyle = const SystemUiOverlayStyle(
+    systemNavigationBarColor: Color(0x00000000),
+    systemNavigationBarDividerColor: null,
+    statusBarColor: Colors.transparent,
+    systemNavigationBarIconBrightness: Brightness.light,
+    statusBarIconBrightness: Brightness.light,
+    statusBarBrightness: Brightness.light
+  );
+
+  SystemChrome.setSystemUIOverlayStyle(uiStyle);
 }
 
 class MyApp extends StatelessWidget {

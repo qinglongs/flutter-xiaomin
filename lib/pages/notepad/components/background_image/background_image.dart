@@ -11,7 +11,7 @@ class BackgroundImage extends StatelessWidget {
       height: 232,
       width: size.width,
       child: const Image(
-        image: AssetImage('image/head-background.png'),
+        image: AssetImage('assets/image/head-background.png'),
         fit: BoxFit.fill,
       ),
     );
