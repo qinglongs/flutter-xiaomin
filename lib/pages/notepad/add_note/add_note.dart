@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_xiaomin/components/upload_img/upload_img.dart';
+import 'package:flutter_xiaomin/components/choose_file/choose_file.dart';
 import 'package:flutter_xiaomin/components/tag/tag.dart';
 
 class AddNote extends StatelessWidget {
@@ -51,24 +51,24 @@ class AddNote extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       child: Text('图片'),
                       height: 30,
                     ),
-                    UploadImage(),
+                    ChooseFile(),
                   ],
                 )),
             Container(
                 padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBox(
+                  children: [
+                    const SizedBox(
                       child: Text('视频'),
                       height: 30,
                     ),
-                    UploadImage(),
+                    ChooseFile(),
                   ],
                 )),
             Container(
