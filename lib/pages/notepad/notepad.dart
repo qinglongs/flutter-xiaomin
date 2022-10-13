@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/pages/notepad/components/background_image/background_image.dart';
 import 'package:flutter_xiaomin/pages/notepad/components/user_card/user_card.dart';
 
-import './components/background_image/background_image.dart';
 import './components/no_data/no_data.dart';
 
 class Notepad extends StatelessWidget {

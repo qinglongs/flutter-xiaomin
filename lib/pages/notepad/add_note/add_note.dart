@@ -65,7 +65,7 @@ class AddNote extends StatelessWidget {
                       child: Text('视频'),
                       height: 30,
                     ),
-                    ChooseFile(fileType: 'video',),
+                    ChooseFile(fileType: 'video',maxSize: 2,),
                   ],
                 )),
             Container(

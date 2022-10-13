@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
-import "package:file_picker/file_picker.dart";
 import 'package:photo_view/photo_view.dart';
 
 class PreviewFile extends StatelessWidget {
@@ -10,12 +11,12 @@ class PreviewFile extends StatelessWidget {
     Map<dynamic, dynamic> query =
         ModalRoute.of(context)?.settings?.arguments as Map<dynamic, dynamic>;
 
-    final FilePickerResult file = query['file'] as FilePickerResult;
+    final String file = query['file'] as String;
 
     final String type = query['type'] as String;
 
     if (type == 'image') {
-      return PhotoView(imageProvider: AssetImage(file.files.first.path!));
+      return Image.file(File(file));
     }
 
     if (type == 'video') {
