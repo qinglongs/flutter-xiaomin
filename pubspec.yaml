@@ -37,6 +37,8 @@ dependencies:
   flutter_svg: ^1.0.3
   http: ^0.13.5
   file_picker: ^4.6.1
+  photo_view: ^0.14.0
+  video_thumbnail: ^0.5.3
 
 dev_dependencies:
   flutter_test:

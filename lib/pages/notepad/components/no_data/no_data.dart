@@ -12,7 +12,6 @@ class NoData extends StatefulWidget {
 }
 
 class NoDataState extends State<NoData> {
-
   // 点击立即发布
   _onPressed() {
     Navigator.pushNamed(context, 'addNote');
@@ -40,7 +39,7 @@ class NoDataState extends State<NoData> {
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  padding: const EdgeInsets.fromLTRB(10,5,10,5),
+                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                   primary: Colors.white,
                   textStyle: const TextStyle(fontSize: 15),
                   backgroundColor: const Color.fromRGBO(253, 126, 126, 1),

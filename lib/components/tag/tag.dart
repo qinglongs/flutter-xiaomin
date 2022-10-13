@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 
 class Tag extends StatefulWidget {
-  const Tag({Key? key}) : super(key: key);
+  final bool? closeable;
+  final String text;
+
+  const Tag(this.text, {Key? key, this.closeable = false}) : super(key: key);
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return TagState();
   }
 }
@@ -14,7 +16,6 @@ class Tag extends StatefulWidget {
 class TagState extends State<Tag> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Row(
       children: [
         Container(
@@ -27,13 +28,13 @@ class TagState extends State<Tag> {
               child: Row(
             children: [
               Container(
-                margin: EdgeInsets.only(right: 5),
-                child: const Text(
-                  '日记',
-                  style: TextStyle(color: Color.fromRGBO(253, 126, 126, 1)),
+                margin: const EdgeInsets.only(right: 5),
+                child:  Text(
+                  widget.text,
+                  style: const TextStyle(color: Color.fromRGBO(253, 126, 126, 1)),
                 ),
               ),
-              SvgUtils.svg('close')
+              widget.closeable == true ? SvgUtils.svg('close') : Container(),
             ],
           )),
         )

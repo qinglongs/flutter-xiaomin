@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_xiaomin/pages/preview_file/preview_file.dart';
 
 import 'pages/notepad/notepad.dart';
 import 'pages/record/record.dart';
@@ -12,13 +13,12 @@ void main() {
 
   // 主题配置
   SystemUiOverlayStyle uiStyle = const SystemUiOverlayStyle(
-    systemNavigationBarColor: Color(0x00000000),
-    systemNavigationBarDividerColor: null,
-    statusBarColor: Colors.transparent,
-    systemNavigationBarIconBrightness: Brightness.light,
-    statusBarIconBrightness: Brightness.light,
-    statusBarBrightness: Brightness.light
-  );
+      systemNavigationBarColor: Color(0x00000000),
+      systemNavigationBarDividerColor: null,
+      statusBarColor: Colors.transparent,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.light,
+      statusBarBrightness: Brightness.light);
 
   SystemChrome.setSystemUIOverlayStyle(uiStyle);
 }
@@ -31,7 +31,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '登录',
-      routes: {'addNote': (context) => const AddNote()},
+      routes: {
+        'addNote': (context) => const AddNote(),
+        'previewFile': (context) =>  PreviewFile(),
+      },
       theme: ThemeData(
           // This is the theme of your application.
           //
@@ -42,6 +45,43 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
+          /// 线框按钮主题配置
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: ButtonStyle(
+              /// 圆角
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20))),
+
+              /// 边框
+              side: MaterialStateProperty.all(
+                const BorderSide(
+                    color: Color.fromRGBO(253, 126, 126, 1), width: 0),
+              ),
+
+              /// 背景
+              backgroundColor: MaterialStateProperty.resolveWith(
+                  (states) => const Color.fromRGBO(253, 126, 126, 1)),
+
+              /// 文字和 icon 颜色
+              foregroundColor:
+                  MaterialStateProperty.resolveWith((states) => Colors.white),
+            ),
+          ),
+          textButtonTheme: TextButtonThemeData(
+              style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.resolveWith(
+                (states) => const Color.fromRGBO(253, 126, 126, 1)),
+
+            /// 文字和 icon 颜色
+            foregroundColor:
+                MaterialStateProperty.resolveWith((states) => Colors.white),
+
+            /// 圆角
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20))),
+          )),
+
+          /// 状态栏主题
           appBarTheme: const AppBarTheme(
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Color.fromRGBO(38, 38, 38, 1)),
@@ -74,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Notepad(),
     Record(),
     Bill(),
-    Target()
+    Target(),
   ];
 
   @override
