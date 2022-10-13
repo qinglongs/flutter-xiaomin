@@ -40,7 +40,7 @@ class AddNote extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const TextField(
-              maxLines: 10,
+              maxLines: 7,
               decoration: InputDecoration(
                   hintText: "在这里写下想要记录等事件吧 ...", border: InputBorder.none),
             ),
@@ -51,7 +51,7 @@ class AddNote extends StatelessWidget {
                   children: const [
                     SizedBox(
                       child: Text('图片'),
-                      height: 30,
+                      height: 40,
                     ),
                     ChooseFile(fileType: 'image',),
                   ],
@@ -63,7 +63,7 @@ class AddNote extends StatelessWidget {
                   children: const [
                     SizedBox(
                       child: Text('视频'),
-                      height: 30,
+                      height: 40,
                     ),
                     ChooseFile(fileType: 'video',maxSize: 2,),
                   ],
@@ -76,7 +76,7 @@ class AddNote extends StatelessWidget {
                   children: [
                     const SizedBox(
                       child: Text('事件类型'),
-                      height: 30,
+                      height: 40,
                     ),
                     Row(
                       children: [

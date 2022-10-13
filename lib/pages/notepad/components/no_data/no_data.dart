@@ -29,17 +29,17 @@ class NoDataState extends State<NoData> {
         children: [
           SvgUtils.svg('notepad-no-data'),
           Container(
-            margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 8, 0, 0),
             child: const Text('暂无事件',
                 style: TextStyle(color: Color.fromRGBO(127, 124, 124, 1))),
           ),
           Container(
-            margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+            margin: const EdgeInsets.fromLTRB(0, 12, 0, 0),
             child: TextButton(
                 style: TextButton.styleFrom(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
-                  padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+                  padding: const EdgeInsets.fromLTRB(16, 5, 16, 5),
                   primary: Colors.white,
                   textStyle: const TextStyle(fontSize: 15),
                   backgroundColor: const Color.fromRGBO(253, 126, 126, 1),

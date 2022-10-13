@@ -26,6 +26,7 @@ class TagState extends State<Tag> {
           ),
           child: Center(
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 margin: const EdgeInsets.only(right: 5),
@@ -34,7 +35,7 @@ class TagState extends State<Tag> {
                   style: const TextStyle(color: Color.fromRGBO(253, 126, 126, 1)),
                 ),
               ),
-              widget.closeable == true ? SvgUtils.svg('close') : Container(),
+              widget.closeable == true ? SvgUtils.svg('close') : const SizedBox(width: 0,height: 0),
             ],
           )),
         )

@@ -16,12 +16,15 @@ class ScreenScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: false,
       appBar: title != null
           ? AppBar(
+              shadowColor: Colors.transparent,
+              backgroundColor: Colors.transparent,
               centerTitle: true,
               title: Text(
                 title!,
                 style: const TextStyle(fontSize: 16),
               ),
               actions: actions,
+              leading: IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: () {  },),
             )
           : null,
       body: Container(
