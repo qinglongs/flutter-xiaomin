@@ -39,6 +39,7 @@ dependencies:
   file_picker: ^4.6.1
   photo_view: ^0.14.0
   video_thumbnail: ^0.5.3
+  video_player: ^2.4.7
 
 dev_dependencies:
   flutter_test:
