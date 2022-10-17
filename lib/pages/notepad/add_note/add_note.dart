@@ -51,9 +51,9 @@ class AddNote extends StatelessWidget {
                   children: const [
                     SizedBox(
                       child: Text('图片'),
-                      height: 40,
+                      height: 25,
                     ),
-                    ChooseFile(fileType: 'image',),
+                    ChooseFile(fileType: 'image',maxSize: 3,),
                   ],
                 )),
             Container(
@@ -63,7 +63,7 @@ class AddNote extends StatelessWidget {
                   children: const [
                     SizedBox(
                       child: Text('视频'),
-                      height: 40,
+                      height: 25,
                     ),
                     ChooseFile(fileType: 'video',maxSize: 2,),
                   ],

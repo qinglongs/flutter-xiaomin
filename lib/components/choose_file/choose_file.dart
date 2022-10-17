@@ -5,12 +5,17 @@ import 'package:flutter/material.dart';
 import "package:file_picker/file_picker.dart";
 import 'package:video_thumbnail/video_thumbnail.dart';
 
+typedef OnChooseFile = void Function({required FilePickerResult file});
+
 class ChooseFile extends StatefulWidget {
   final int? maxSize;
 
   final String? fileType;
 
-  const ChooseFile({Key? key, this.maxSize = 3, this.fileType = 'image'})
+  final OnChooseFile? onChooseFile;
+
+  const ChooseFile(
+      {Key? key, this.maxSize = 3, this.fileType = 'image', this.onChooseFile})
       : super(key: key);
 
   @override
@@ -44,13 +49,16 @@ class ChooseFileState extends State<ChooseFile> {
           videoList.add(result);
         });
       }
-
       setState(() {
         fileList.add(res);
       });
+
+      /// 触发成功选择文件的回调
+      if (widget.onChooseFile != null) widget.onChooseFile!(file: res);
     }
   }
 
+  /// 生成视频缩略图封面
   _generateVideoCover(String path) async {
     final result = await VideoThumbnail.thumbnailData(
       video: path,
@@ -70,46 +78,96 @@ class ChooseFileState extends State<ChooseFile> {
         arguments: {'file': file.files.first.path, 'type': widget.fileType});
   }
 
+
+  /// 删除选中的文件
+  handleTapCloseIcon(int index) {
+    setState(() {
+      fileList.remove(fileList[index]);
+      if (widget.fileType == 'video') videoList.remove(videoList[index]);
+    });
+  }
+
   /// 渲染图片
   _renderImage() {
-    return fileList.asMap().entries.map((entries) {
+
+
+
+    /// 带关闭 icon 的预览容器
+    Widget _closableBox({required int index, required Widget child}) {
+      final int key = index;
+      return SizedBox(
+        width: 115,
+        height: 110,
+        child: Stack(
+          children: [
+            Align(
+              alignment: Alignment.bottomLeft,
+              child: SizedBox(
+                  width: 100,
+                  height: 100,
+                  child: GestureDetector(
+                      onTap: () => _handleTapPreview(fileList[key]),
+                      child: child)),
+            ),
+            Positioned(
+              top: 5,
+              right: 10,
+              child: GestureDetector(
+                onTap: () => handleTapCloseIcon(index),
+                child: Container(
+                  width: 18,
+                  height: 18,
+                  decoration: const BoxDecoration(
+                    color: Color.fromRGBO(253, 126, 126, 1),
+                    shape: BoxShape.circle,
+                  ),
+                  child: const Center(
+                    child: Icon(
+                      Icons.clear,
+                      color: Colors.white,
+                      size: 14,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
+    return fileList.asMap().keys.map((key) {
       /// 渲染图片
       if (widget.fileType == 'image') {
-        return Container(
-          margin: const EdgeInsets.only(right: 10),
-          child: GestureDetector(
-              onTap: () => _handleTapPreview(entries.value),
-              child: Image.file(
-                File(entries.value.files.first.path!),
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
-              )),
-        );
+        return _closableBox(
+            index: key,
+            child: Image.file(
+              File(fileList[key].files.first.path!),
+              width: 100,
+              height: 100,
+              fit: BoxFit.cover,
+            ));
       }
 
       /// 渲染视频缩略图
       if (widget.fileType == 'video') {
-        return Container(
-          margin: const EdgeInsets.only(right: 10),
-          child: GestureDetector(
-            onTap: () => _handleTapPreview(entries.value),
+        return _closableBox(
+            index: key,
             child: Image.memory(
-              videoList[entries.key],
+              videoList[key],
               width: 100,
               height: 100,
               fit: BoxFit.cover,
-            ),
-          ),
-        );
+            ));
       }
-      return const Text('不支持的文件类型');
+      return _closableBox(
+          index: key, child: const Text('an unsupported file type'));
     }).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Wrap(
       children: [
         ..._renderImage(),
         fileList.length < widget.maxSize!
@@ -119,6 +177,7 @@ class ChooseFileState extends State<ChooseFile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      margin: const EdgeInsets.only(top: 10, right: 10),
                       width: 100,
                       height: 100,
                       color: const Color.fromRGBO(196, 196, 196, 0.2),
