@@ -89,9 +89,6 @@ class ChooseFileState extends State<ChooseFile> {
 
   /// 渲染图片
   _renderImage() {
-
-
-
     /// 带关闭 icon 的预览容器
     Widget _closableBox({required int index, required Widget child}) {
       final int key = index;

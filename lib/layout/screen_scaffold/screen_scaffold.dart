@@ -4,8 +4,10 @@ class ScreenScaffold extends StatelessWidget {
   final Widget? body;
   final String? title;
   final List<Widget>? actions;
+  final EdgeInsets? bodyPadding;
 
-  const ScreenScaffold({Key? key, this.body, this.title, this.actions})
+  const ScreenScaffold(
+      {Key? key, this.body, this.title, this.actions, this.bodyPadding})
       : super(key: key);
 
   @override
@@ -24,16 +26,19 @@ class ScreenScaffold extends StatelessWidget {
                 style: const TextStyle(fontSize: 16),
               ),
               actions: actions,
-              leading: IconButton(icon: const Icon(Icons.arrow_back_ios), onPressed: () {  },),
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back_ios),
+                onPressed: () => Navigator.pop(context),
+              ),
             )
           : null,
       body: Container(
-          padding: const EdgeInsets.all(10),
+          padding: bodyPadding ?? const EdgeInsets.all(10),
           decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [
               Color.fromRGBO(247, 249, 252, 1),
-              Color.fromRGBO(255, 242, 242, 1),
+              Color.fromRGBO(254, 242, 242, 1.0),
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,

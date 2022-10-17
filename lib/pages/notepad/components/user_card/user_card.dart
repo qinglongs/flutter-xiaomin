@@ -6,7 +6,12 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final size = MediaQuery.of(context).size;
+
+    _handleTapUserAvatar() {
+      Navigator.pushNamed(context, 'userInfo');
+    }
 
     return Container(
       width: size.width,
@@ -15,13 +20,16 @@ class UserCard extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 70,
-            height: 70,
-            margin: const EdgeInsets.only(right: 8),
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(200, 126, 126, 1),
-              shape: BoxShape.circle,
+          GestureDetector(
+            onTap: _handleTapUserAvatar,
+            child: Container(
+              width: 70,
+              height: 70,
+              margin: const EdgeInsets.only(right: 8),
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(200, 126, 126, 1),
+                shape: BoxShape.circle,
+              ),
             ),
           ),
           const Text(

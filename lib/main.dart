@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_xiaomin/pages/preview_file/preview_file.dart';
+import 'package:flutter_xiaomin/pages/user_info/user_info.dart';
 
 import 'pages/notepad/notepad.dart';
 import 'pages/record/record.dart';
 import 'pages/bill/bill.dart';
 import 'pages/target/target.dart';
-import 'pages/notepad/add_note/add_note.dart';
+import 'pages/add_note/add_note.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,7 +34,8 @@ class MyApp extends StatelessWidget {
       title: '登录',
       routes: {
         'addNote': (context) => const AddNote(),
-        'previewFile': (context) =>  PreviewFile(),
+        'previewFile': (context) =>  const PreviewFile(),
+        'userInfo': (context) =>  const UserInfo(),
       },
       theme: ThemeData(
           // This is the theme of your application.
