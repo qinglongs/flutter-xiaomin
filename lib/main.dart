@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_xiaomin/pages/note_detail/note_detail.dart';
+import 'package:flutter_xiaomin/pages/note_drafts/note_drafts.dart';
 import 'package:flutter_xiaomin/pages/preview_file/preview_file.dart';
 import 'package:flutter_xiaomin/pages/user_info/user_info.dart';
 
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         'addNote': (context) => const AddNote(),
         'previewFile': (context) => const PreviewFile(),
         'userInfo': (context) => const UserInfo(),
-        'noteDetail': (context) => const NoteDetail()
+        'noteDetail': (context) => const NoteDetail(),
+        'noteDrafts':(context)=> const NoteDrafts()
       },
       theme: ThemeData(
           // This is the theme of your application.

@@ -15,7 +15,9 @@ class UserCard extends StatelessWidget {
     }
 
     /// 进入草稿项
-    _handleTapDrafts() {}
+    _handleTapDrafts() {
+      Navigator.pushNamed(context, 'noteDrafts');
+    }
 
     /// 头像
     const String avatarUri =
