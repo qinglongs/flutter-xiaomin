@@ -11,10 +11,17 @@ class NoteCard extends StatefulWidget {
 }
 
 class NoteCardState extends State<NoteCard> {
+
+  /// mock图片
   static String uri =
       'https://t7.baidu.com/it/u=1785207335,3397162108&fm=193&f=GIF';
 
-  _handleTapNoteCard(){
+
+  /// mock文本
+  String text =
+      'Expanded 可以使 Row、Column、Flex 里面的组件填充沿着主轴可利用的空间，如果多个 Widget 都使用了 Expanded 组件，可以使用 Expanded 的 flex 属性按照比例分配主轴空间，flex 属性相当于 Android LinearLayout 的 weight 属性，如下：。';
+
+  _handleTapNoteCard() {
     Navigator.pushNamed(context, 'noteDetail');
   }
 
@@ -55,10 +62,13 @@ class NoteCardState extends State<NoteCard> {
                         ),
                       ),
                     ),
-                    const Expanded(
+                    Expanded(
                         flex: 1,
                         child: Text(
-                            'Expanded 可以使 Row、Column、Flex 里面的组件填充沿着主轴可利用的空间，如果多个 Widget 都使用了 Expanded 组件，可以使用 Expanded 的 flex 属性按照比例分配主轴空间，flex 属性相当于 Android LinearLayout 的 weight 属性，如下：。')),
+                          text,
+                          maxLines: 3,
+                          overflow: TextOverflow.ellipsis,
+                        )),
                   ],
                 ),
                 const SizedBox(
