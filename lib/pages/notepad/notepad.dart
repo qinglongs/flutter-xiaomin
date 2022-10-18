@@ -7,53 +7,33 @@ import 'package:flutter_xiaomin/pages/notepad/components/user_card/user_card.dar
 import './components/no_data/no_data.dart';
 
 class Notepad extends StatelessWidget {
-  const Notepad({Key? key}) : super(key: key);
+  Notepad({Key? key}) : super(key: key);
+
+  final List<int> list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Stack(
-      fit: StackFit.expand,
-      clipBehavior: Clip.none,
-      children: [
-        //背景
-        const Positioned(
-          top: 0,
-          left: 0,
-          child: BackgroundImage(),
-        ),
-        //用户卡片
-        const Positioned(
-          top: 196,
-          left: 0,
-          child: UserCard(),
-        ),
-        // 无数据展示
-        // Positioned(
-        //     top: 232,
-        //     left: 0,
-        //     child: NoData(),
-        // ),
-        Positioned(
-          top: 270,
-          left: 0,
-          child: Container(
-            height: 500,
-            color: Colors.pinkAccent,
-            padding: const EdgeInsets.only(left: 16,right: 16),
-            width: size.width,
-            child: ListView(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 286,
+            child: Stack(
               children: const [
-                NoteCard(),
-                NoteCard(),
-                NoteCard(),
-                NoteCard(),
-                NoteCard(),
+                BackgroundImage(),
+                Positioned(top: 198, left: 0, child: UserCard())
               ],
             ),
           ),
-        ),
-      ],
+          ...list.map((e) =>Container(
+            margin: const EdgeInsets.only(left: 16,right: 16,bottom: 16),
+            child: const NoteCard(),
+          )).toList()
+          ,
+
+        ],
+      ),
     );
   }
 }

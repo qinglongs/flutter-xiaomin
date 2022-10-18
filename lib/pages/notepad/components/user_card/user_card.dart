@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 
 class UserCard extends StatelessWidget {
@@ -6,12 +7,15 @@ class UserCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final size = MediaQuery.of(context).size;
 
     _handleTapUserAvatar() {
       Navigator.pushNamed(context, 'userInfo');
     }
+
+    /// 头像
+    const String avatarUri =
+        'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg5q.duitang.com%2Fuploads%2Fitem%2F201505%2F04%2F20150504183354_zLZjV.jpeg&refer=http%3A%2F%2Fimg5q.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1668666155&t=de32c15e01c61b4c82a770896dcba7f2';
 
     return Container(
       width: size.width,
@@ -23,14 +27,18 @@ class UserCard extends StatelessWidget {
           GestureDetector(
             onTap: _handleTapUserAvatar,
             child: Container(
-              width: 70,
-              height: 70,
-              margin: const EdgeInsets.only(right: 8),
-              decoration: const BoxDecoration(
-                color: Color.fromRGBO(200, 126, 126, 1),
-                shape: BoxShape.circle,
-              ),
-            ),
+                width: 70,
+                height: 70,
+                margin: const EdgeInsets.only(right: 8),
+                decoration: BoxDecoration(
+                  border: Border.all(color: const Color.fromRGBO(253,126,126,1), width: 2),
+                  color: const Color.fromRGBO(200, 126, 126, 1),
+                  boxShadow: const [BoxShadow(color: Color.fromRGBO(253, 126, 126, 0.5), blurRadius: 4,spreadRadius: 2)],
+                  shape: BoxShape.circle,
+                ),
+                child: ClipOval(
+                  child: Image.network(avatarUri),
+                )),
           ),
           const Text(
             '小李子的大李子',
@@ -52,7 +60,7 @@ class UserCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [SvgUtils.svg('female'), const Text('23岁')],
+                  children: [SvgUtils.svg('female'), const Text('23岁',style: TextStyle(color: Color.fromRGBO(127,124,124,1),fontSize: 14),)],
                 ),
               ),
             ),
