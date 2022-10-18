@@ -122,6 +122,11 @@ class _MyHomePageState extends State<MyHomePage> {
     const Target(),
   ];
 
+  _handleTapAddNote() {
+    print('onTap');
+    Navigator.pushNamed(context, 'addNote');
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -131,6 +136,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromRGBO(253, 126, 126, 1),
+        onPressed: _handleTapAddNote,
+        tooltip: '添加事件',
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(

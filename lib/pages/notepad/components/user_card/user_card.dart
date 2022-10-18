@@ -9,9 +9,13 @@ class UserCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    /// 查看个人资料
     _handleTapUserAvatar() {
       Navigator.pushNamed(context, 'userInfo');
     }
+
+    /// 进入草稿项
+    _handleTapDrafts() {}
 
     /// 头像
     const String avatarUri =
@@ -31,40 +35,78 @@ class UserCard extends StatelessWidget {
                 height: 70,
                 margin: const EdgeInsets.only(right: 8),
                 decoration: BoxDecoration(
-                  border: Border.all(color: const Color.fromRGBO(253,126,126,1), width: 2),
+                  border: Border.all(
+                      color: const Color.fromRGBO(253, 126, 126, 1), width: 2),
                   color: const Color.fromRGBO(200, 126, 126, 1),
-                  boxShadow: const [BoxShadow(color: Color.fromRGBO(253, 126, 126, 0.5), blurRadius: 4,spreadRadius: 2)],
+                  boxShadow: const [
+                    BoxShadow(
+                        color: Color.fromRGBO(253, 126, 126, 0.5),
+                        blurRadius: 4,
+                        spreadRadius: 2)
+                  ],
                   shape: BoxShape.circle,
                 ),
                 child: ClipOval(
                   child: Image.network(avatarUri),
                 )),
           ),
-          const Text(
-            '小李子的大李子',
-            style: TextStyle(
-                fontSize: 20, color: Color.fromRGBO(255, 255, 255, 1)),
-          ),
           Expanded(
-            flex: 1,
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Container(
-                width: 69,
-                padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
-                decoration: BoxDecoration(
-                    color: const Color.fromRGBO(239, 241, 255, 0.5),
-                    borderRadius: BorderRadius.circular(24),
-                    border: Border.all(
-                        color: const Color.fromRGBO(255, 255, 255, 1))),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [SvgUtils.svg('female'), const Text('23岁',style: TextStyle(color: Color.fromRGBO(127,124,124,1),fontSize: 14),)],
-                ),
-              ),
-            ),
-          )
+              flex: 1,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        '小李子的大李子',
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromRGBO(255, 255, 255, 1)),
+                      ),
+                      Container(
+                        width: 69,
+                        padding: const EdgeInsets.fromLTRB(8, 4, 8, 4),
+                        decoration: BoxDecoration(
+                            color: const Color.fromRGBO(239, 241, 255, 0.5),
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(
+                                color: const Color.fromRGBO(255, 255, 255, 1))),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SvgUtils.svg('female'),
+                            const Text(
+                              '23岁',
+                              style: TextStyle(
+                                  color: Color.fromRGBO(127, 124, 124, 1),
+                                  fontSize: 14),
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  GestureDetector(
+                    onTap: _handleTapDrafts,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        const Text(
+                          '本地草稿1篇待发布',
+                          style: TextStyle(
+                              color: Color.fromRGBO(127, 124, 124, 1),
+                              fontSize: 14),
+                        ),
+                        SvgUtils.svg('arrow_right')
+                      ],
+                    ),
+                  )
+                ],
+              )),
         ],
       ),
     );

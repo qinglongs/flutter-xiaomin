@@ -22,7 +22,7 @@ class Notepad extends StatelessWidget {
             child: Stack(
               children: const [
                 BackgroundImage(),
-                Positioned(top: 198, left: 0, child: UserCard())
+                Positioned(top: 195, left: 0, child: UserCard())
               ],
             ),
           ),
