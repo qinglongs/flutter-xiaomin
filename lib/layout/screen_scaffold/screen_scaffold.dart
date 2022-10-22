@@ -33,7 +33,11 @@ class ScreenScaffold extends StatelessWidget {
             )
           : null,
       body: Container(
-          padding: bodyPadding ?? const EdgeInsets.all(10),
+
+          /// 兼容状态栏高度
+          margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+          padding: bodyPadding ??
+              const EdgeInsets.only(left: 10, right: 10, bottom: 10),
           decoration: const BoxDecoration(
               gradient: LinearGradient(
             colors: [
