@@ -98,13 +98,13 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white,
               iconTheme: IconThemeData(color: Color.fromRGBO(38, 38, 38, 1)),
               titleTextStyle: TextStyle(color: Color.fromRGBO(38, 38, 38, 1)))),
-      home: const MyHomePage(title: 'hello world'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
@@ -114,7 +114,6 @@ class MyHomePage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-  final String title;
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }

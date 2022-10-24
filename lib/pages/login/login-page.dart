@@ -14,11 +14,13 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
+  bool _rememberPassword = false;
+  bool _hiddenPassword = false;
+
   _handleLogin() {}
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return ScreenScaffold(
       bodyPadding: const EdgeInsets.only(left: 48, right: 48),
       body: Column(
@@ -47,18 +49,29 @@ class LoginState extends State<Login> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 10),
-            child: const TextField(
+            child: TextField(
               decoration: InputDecoration(
-                hintStyle: TextStyle(
+                suffixIconColor: const Color.fromRGBO(253, 126, 126, 1),
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _hiddenPassword = !_hiddenPassword;
+                    });
+                  },
+                  child: Icon(_hiddenPassword
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                ),
+                hintStyle: const TextStyle(
                     fontSize: 14, color: Color.fromRGBO(191, 191, 191, 1)),
                 hintText: "密码",
-                errorBorder: UnderlineInputBorder(
+                errorBorder: const UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromRGBO(217, 217, 217, 1))),
-                enabledBorder: UnderlineInputBorder(
+                enabledBorder: const UnderlineInputBorder(
                     borderSide:
                         BorderSide(color: Color.fromRGBO(217, 217, 217, 1))),
-                focusedBorder: UnderlineInputBorder(
+                focusedBorder: const UnderlineInputBorder(
                   borderSide: BorderSide(
                       color: Color.fromRGBO(217, 217, 217, 1), width: 1),
                 ),
@@ -69,16 +82,41 @@ class LoginState extends State<Login> {
             margin: const EdgeInsets.only(top: 10, bottom: 42),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   '注册',
                   style: TextStyle(
                       color: Color.fromRGBO(253, 126, 126, 1),
                       decoration: TextDecoration.underline),
                 ),
-                Text(
-                  '记住密码',
-                  style: TextStyle(color: Color.fromRGBO(127, 124, 124, 1)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _rememberPassword = !_rememberPassword;
+                        });
+                      },
+                      child: Radio<bool>(
+                        groupValue: false,
+                        toggleable: true,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        activeColor: const Color.fromRGBO(253, 126, 126, 1),
+                        value: _rememberPassword,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _rememberPassword = !_rememberPassword;
+                          });
+                        },
+                      ),
+                    ),
+                    const Text(
+                      '记住密码',
+                      style: TextStyle(color: Color.fromRGBO(127, 124, 124, 1)),
+                    ),
+                  ],
                 )
               ],
             ),
