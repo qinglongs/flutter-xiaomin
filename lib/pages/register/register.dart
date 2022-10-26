@@ -4,24 +4,24 @@ import 'package:flutter_xiaomin/components/button/button.dart';
 import 'package:flutter_xiaomin/components/input/input.dart';
 import 'package:flutter_xiaomin/components/user_avatar/user_avatar.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
+import 'package:flutter_xiaomin/components/verification_code_button/verification_code_button.dart';
 
-
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return LoginState();
+    return RegisterState();
   }
 }
 
-class LoginState extends State<Login> {
+class RegisterState extends State<Register> {
   bool _rememberPassword = false;
   bool _hiddenPassword = false;
 
   _handleLogin() {
-    print('登录');
+    print('注册');
   }
 
   _handleTapForgetPassword() {
@@ -47,6 +47,11 @@ class LoginState extends State<Login> {
             hitText: '用户名',
             margin: EdgeInsets.only(top: 10),
           ),
+          const Input(
+            hitText: '请输入验证码',
+            margin: EdgeInsets.only(top: 10),
+            suffixIcon: VerificationCodeButton(),
+          ),
           Input(
             hitText: '密码',
             margin: const EdgeInsets.only(top: 10),
@@ -57,9 +62,7 @@ class LoginState extends State<Login> {
                 });
               },
               child: Icon(
-                _hiddenPassword ? Icons.visibility : Icons.visibility_off,
-                color: const Color.fromRGBO(127, 124, 124, 1),
-              ),
+                  _hiddenPassword ? Icons.visibility : Icons.visibility_off),
             ),
           ),
           Container(
@@ -114,24 +117,10 @@ class LoginState extends State<Login> {
               width: double.infinity,
               height: 30,
               child: Center(
-                child: Text('登录'),
+                child: Text('注册'),
               ),
             ),
           ),
-          GestureDetector(
-            onTap: _handleTapForgetPassword,
-            child: Container(
-              margin: const EdgeInsets.only(top: 10),
-              child: const Align(
-                alignment: Alignment.bottomRight,
-                child: Text(
-                  '忘记密码？',
-                  style: TextStyle(
-                      color: Color.fromRGBO(127, 124, 124, 1), fontSize: 12),
-                ),
-              ),
-            ),
-          )
         ],
       ),
     );
