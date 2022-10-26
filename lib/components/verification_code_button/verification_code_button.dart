@@ -22,7 +22,7 @@ class VerificationCodeButtonState extends State<VerificationCodeButton> {
   /// 倒计时
   _countDown() {
     if (showCount) return;
-    timer = Timer.periodic(const Duration(microseconds: 1000000), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         if (count > 0) {
           showCount = true;
@@ -40,6 +40,7 @@ class VerificationCodeButtonState extends State<VerificationCodeButton> {
 
   /// 点击发送验证码
   _handleTapSendVerifyCode() {
+
     _countDown();
   }
 

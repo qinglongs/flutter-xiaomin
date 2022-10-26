@@ -68,17 +68,8 @@ class RegisterState extends State<Register> {
           Container(
             margin: const EdgeInsets.only(top: 10, bottom: 42),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                GestureDetector(
-                  onTap: _handleRegister,
-                  child: const Text(
-                    '注册',
-                    style: TextStyle(
-                        color: Color.fromRGBO(253, 126, 126, 1),
-                        decoration: TextDecoration.underline),
-                  ),
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.center,
