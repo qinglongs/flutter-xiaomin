@@ -38,8 +38,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '登录',
-      initialRoute: 'login',
+      // initialRoute: 'login',
       routes: {
         'splashScreen': (context) => const SplashScreen(),
         'login': (context) => const Login(),
@@ -154,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.business),
-            label: '记录',
+            label: '经期记录',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.school),
