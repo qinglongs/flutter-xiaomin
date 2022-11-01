@@ -1,14 +1,73 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_xiaomin/pages/record/calendar/calendar.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/pages/record/components/calendar/calendar.dart';
+import 'package:flutter_xiaomin/pages/record/components/calendar_label/calendar_label.dart';
+import 'package:flutter_xiaomin/utils/shard.dart';
 
-class Record extends StatelessWidget {
+import 'components/calendar/calendar.dart';
+
+class Record extends StatefulWidget {
   const Record({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return RecordState();
+  }
+}
 
-    return const SingleChildScrollView(
-      child: Calendar(),
+class RecordState extends State<Record> {
+  @override
+  void initState() {
+    super.initState();
+    setAppbar(backgroundColor: const Color.fromRGBO(253, 126, 126, 1));
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    setAppbar(backgroundColor: Colors.transparent);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        SizedBox(
+            width: double.infinity,
+            child: Container(
+              color: const Color.fromRGBO(253, 126, 126, 1),
+              padding: const EdgeInsets.only(top: 8, left: 16, bottom: 20),
+              child: const Text(
+                '2022年3月',
+                style: TextStyle(fontSize: 16, color: Colors.white),
+              ),
+            )),
+        Container(
+            margin: const EdgeInsets.only(top: 40),
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12))),
+            child: Column(
+              children: [
+                const Calendar(),
+                Container(
+                  color: Colors.white,
+                  padding: const EdgeInsets.only(left: 16,bottom: 25),
+                  child: Row(
+                    children:const [
+                      CalendarLabel(title: '月经期',),
+                      CalendarLabel(title: '预测经期',),
+                      CalendarLabel(title:'易孕期'),
+                    ],
+                  ),
+                )
+              ],
+            ))
+      ],
     );
   }
 }

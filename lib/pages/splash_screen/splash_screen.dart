@@ -16,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 
 class SplashScreenState extends State<SplashScreen> {
   handleSkip() {
-    Navigator.pushNamed(context, 'login');
+    Navigator.pushNamed(context, 'home');
   }
 
   @override
