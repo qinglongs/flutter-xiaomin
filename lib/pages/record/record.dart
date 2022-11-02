@@ -44,29 +44,35 @@ class RecordState extends State<Record> {
                 style: TextStyle(fontSize: 16, color: Colors.white),
               ),
             )),
-        Container(
-            margin: const EdgeInsets.only(top: 40),
-            decoration: const BoxDecoration(
+        Column(
+          children: [
+            Container(
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 40),
+              decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
-                    topRight: Radius.circular(12))),
-            child: Column(
-              children: [
-                const Calendar(),
-                Container(
-                  color: Colors.white,
-                  padding: const EdgeInsets.only(left: 16,bottom: 25),
-                  child: Row(
-                    children:const [
-                      CalendarLabel(title: '月经期',),
-                      CalendarLabel(title: '预测经期',),
-                      CalendarLabel(title:'易孕期'),
-                    ],
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12))),
+              child: const Calendar(),
+            ),
+            Container(
+              color: Colors.white,
+              padding: const EdgeInsets.only(left: 16, bottom: 25),
+              child: Row(
+                children: const [
+                  CalendarLabel(
+                    title: '月经期',
                   ),
-                )
-              ],
-            ))
+                  CalendarLabel(
+                    title: '预测经期',
+                  ),
+                  CalendarLabel(title: '易孕期'),
+                ],
+              ),
+            )
+          ],
+        )
       ],
     );
   }

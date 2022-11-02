@@ -52,8 +52,8 @@ class CalendarState extends State<Calendar> {
     31
   ];
 
-  /// 当前时间
-  int currentDate = 12;
+  /// 月经期
+  List<int> currentDates = [9,10,11];
 
   /// 预测经期
   List<int> forecastDates = [10, 11, 12, 13, 14];
@@ -86,7 +86,7 @@ class CalendarState extends State<Calendar> {
             direction: Axis.horizontal,
             children: dateList.map((e) {
               /// 是否当前时间
-              bool isCurrent = currentDate == e;
+              bool isCurrent = currentDates.contains(e);
               /// 是否经期
               bool isForecast = forecastDates.contains(e);
               /// 是否易孕期
