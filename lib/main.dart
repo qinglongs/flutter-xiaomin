@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_xiaomin/pages/add_bill/add_bill.dart';
 import 'package:flutter_xiaomin/pages/forget_password/forget_password.dart';
 import 'package:flutter_xiaomin/pages/home/home.dart';
 import 'package:flutter_xiaomin/pages/login/login-page.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
         'noteDrafts': (context) => const NoteDrafts(),
         'forgetPassword': (context) => const ForgetPassword(),
         'register': (context) => const Register(),
-        'home': (context) => const MyHomePage()
+        'home': (context) => const MyHomePage(),
+        'addBill':(context)=> const AddBill()
       },
       theme: ThemeData(
           // This is the theme of your application.

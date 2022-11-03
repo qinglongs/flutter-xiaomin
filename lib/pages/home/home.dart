@@ -34,17 +34,29 @@ class _MyHomePageState extends State<MyHomePage> {
     const Target(),
   ];
 
+  /// 新增事件
   _handleTapAddNote() {
     Navigator.pushNamed(context, 'addNote');
   }
 
+  /// 新增账单
+  _handleTapAddBill() {
+    Navigator.pushNamed(context, 'addBill');
+  }
+
   /// 渲染右下角的固定按钮
   _renderFloatingActionButton() {
-    if (_currentIndex == 0) {
+    if ([0, 2].contains(_currentIndex)) {
+
+      /// 点击事件map
+      Map<int, void Function()> tapMap = {
+        0: _handleTapAddNote,
+        2: _handleTapAddBill,
+      };
+
       return FloatingActionButton(
         backgroundColor: const Color.fromRGBO(253, 126, 126, 1),
-        onPressed: _handleTapAddNote,
-        tooltip: '添加事件',
+        onPressed: tapMap[_currentIndex],
         child: const Icon(Icons.add),
       );
     }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/pages/record/components/calendar/calendar.dart';
 import 'package:flutter_xiaomin/pages/record/components/calendar_label/calendar_label.dart';
+import 'package:flutter_xiaomin/pages/record/components/statistics_list/statistics_list.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 
 import 'components/calendar/calendar.dart';
@@ -32,6 +33,7 @@ class RecordState extends State<Record> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Stack(
       children: [
         SizedBox(
@@ -50,11 +52,30 @@ class RecordState extends State<Record> {
               width: double.infinity,
               margin: const EdgeInsets.only(top: 40),
               decoration: const BoxDecoration(
-                color: Colors.white,
+                  color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(12),
                       topRight: Radius.circular(12))),
-              child: const Calendar(),
+              child: SizedBox(
+                height: 300,
+                child: PageView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    SizedBox(
+                      width: size.width,
+                      child: const Calendar(),
+                    ),
+                    SizedBox(
+                      width: size.width,
+                      child: const Calendar(),
+                    ),
+                    SizedBox(
+                      width: size.width,
+                      child: const Calendar(),
+                    ),
+                  ],
+                ),
+              ),
             ),
             Container(
               color: Colors.white,
@@ -70,7 +91,11 @@ class RecordState extends State<Record> {
                   CalendarLabel(title: '易孕期'),
                 ],
               ),
-            )
+            ),
+           Container(
+             margin: const EdgeInsets.only(top: 20),
+             child: const StatisticsList(),
+           )
           ],
         )
       ],
