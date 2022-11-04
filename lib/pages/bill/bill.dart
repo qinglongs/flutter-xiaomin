@@ -16,15 +16,13 @@ class Bill extends StatefulWidget {
 class BillState extends State<Bill> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setAppbar(backgroundColor: const Color.fromRGBO(253, 126, 126, 1));
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+  void deactivate () {
+    super.deactivate();
     setAppbar(backgroundColor: Colors.transparent);
   }
 

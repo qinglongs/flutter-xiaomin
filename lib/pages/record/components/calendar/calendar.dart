@@ -106,6 +106,7 @@ class CalendarState extends State<Calendar> {
               /// 是否选中
               bool isSelected = selectDate == date;
 
+              /// 背景色
               Color? bgColor = isCurrent
                   ? const Color.fromRGBO(253, 126, 126, 1)
                   : isForecast

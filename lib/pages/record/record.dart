@@ -25,9 +25,8 @@ class RecordState extends State<Record> {
   }
 
   @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+  void deactivate() {
+    super.deactivate();
     setAppbar(backgroundColor: Colors.transparent);
   }
 
@@ -92,10 +91,10 @@ class RecordState extends State<Record> {
                 ],
               ),
             ),
-           Container(
-             margin: const EdgeInsets.only(top: 20),
-             child: const StatisticsList(),
-           )
+            Container(
+              margin: const EdgeInsets.only(top: 20),
+              child: const StatisticsList(),
+            )
           ],
         )
       ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_xiaomin/pages/add_bill/add_bill.dart';
 import 'package:flutter_xiaomin/pages/forget_password/forget_password.dart';
 import 'package:flutter_xiaomin/pages/home/home.dart';
@@ -50,7 +49,7 @@ class MyApp extends StatelessWidget {
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
           /// 线框按钮主题配置
-          outlinedButtonTheme: OutlinedButtonThemeData(
+          textButtonTheme: TextButtonThemeData(
             style: ButtonStyle(
               /// 圆角
               shape: MaterialStateProperty.all(RoundedRectangleBorder(

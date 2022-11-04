@@ -31,3 +31,4 @@ setAppbar({final Color? backgroundColor}) {
 
   SystemChrome.setSystemUIOverlayStyle(uiStyle);
 }
+
