@@ -176,7 +176,7 @@ class AddBillState extends State<AddBill> {
               ),
               Container(
                 width: double.infinity,
-                margin: const EdgeInsets.only(top: 32),
+                margin: const EdgeInsets.only(top: 32,left: 16,right: 16),
                 child: TextButton(
                     onPressed: () {},
                     child: Container(
