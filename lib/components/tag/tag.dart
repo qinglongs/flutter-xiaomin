@@ -26,14 +26,19 @@ class Tag extends StatefulWidget {
 class TagState extends State<Tag> {
   @override
   Widget build(BuildContext context) {
+
+    /// 背景颜色
     Color backgroundColor =
         widget.backgroundColor ?? const Color.fromRGBO(253, 126, 126, 0.1);
 
     Color color = widget.color ?? const Color.fromRGBO(253, 126, 126, 1);
 
+
     Widget icon = widget.closeable == true
         ? SvgUtils.svg('close')
         : const SizedBox(width: 0, height: 0);
+
+
     return GestureDetector(
       onTap: widget.onTap,
       child: Row(

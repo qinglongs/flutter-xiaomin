@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/pages/add_bill/add_bill.dart';
+import 'package:flutter_xiaomin/pages/choose_target/choose_target.dart';
+import 'package:flutter_xiaomin/pages/create_target/create_target.dart';
 import 'package:flutter_xiaomin/pages/forget_password/forget_password.dart';
 import 'package:flutter_xiaomin/pages/home/home.dart';
 import 'package:flutter_xiaomin/pages/login/login-page.dart';
@@ -36,7 +38,9 @@ class MyApp extends StatelessWidget {
         'forgetPassword': (context) => const ForgetPassword(),
         'register': (context) => const Register(),
         'home': (context) => const MyHomePage(),
-        'addBill':(context)=> const AddBill()
+        'addBill': (context) => const AddBill(),
+        'createTarget': (context) => const CreateTarget(),
+        'chooseTarget': (context) => const ChooseTarget()
       },
       theme: ThemeData(
           // This is the theme of your application.

@@ -54,8 +54,7 @@ class ScreenScaffold extends StatelessWidget {
             )
           : null,
       body: Container(
-          constraints:
-              BoxConstraints(maxHeight: size.height, maxWidth: size.width),
+
           /// 兼容状态栏高度
           margin: title == null
               ? EdgeInsets.only(
@@ -72,6 +71,8 @@ class ScreenScaffold extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           )),
+          width: size.width,
+          height: size.height,
           child: body),
     );
   }

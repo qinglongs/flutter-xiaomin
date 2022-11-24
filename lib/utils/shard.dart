@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-//
 class SvgUtils {
   static String svgPath(String svgName) {
     return "assets/svg/$svgName";
@@ -27,7 +26,7 @@ setAppbar({final Color? backgroundColor}) {
       statusBarColor: backgroundColor,
       systemNavigationBarIconBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.light);
+      statusBarBrightness: Brightness.dark);
 
   SystemChrome.setSystemUIOverlayStyle(uiStyle);
 }

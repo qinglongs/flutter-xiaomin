@@ -23,20 +23,23 @@ class Tag extends StatefulWidget {
 class TagState extends State<Tag> {
   @override
   Widget build(BuildContext context) {
+    /// 文字颜色
     Color textColor = widget.icon != null
         ? Colors.black
-        : widget?.active == true
+        : widget.active == true
             ? const Color.fromRGBO(253, 126, 126, 1)
             : const Color.fromRGBO(191, 191, 191, 1);
 
+    /// 背景颜色
+    Color backgroundColor = widget.active == true
+        ? const Color.fromRGBO(253, 126, 126, 0.1)
+        : const Color.fromRGBO(231, 231, 231, 0.3);
 
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 5, left: 16, right: 16),
       margin: const EdgeInsets.only(right: 8),
       decoration: BoxDecoration(
-          color: widget?.active == true
-              ? const Color.fromRGBO(253, 126, 126, 0.1)
-              : const Color.fromRGBO(231, 231, 231, 0.3),
+          color: backgroundColor,
           borderRadius: const BorderRadius.all(Radius.circular(16))),
       child: Row(
         children: [
@@ -45,7 +48,10 @@ class TagState extends State<Tag> {
             style: TextStyle(fontSize: 14, color: textColor),
           ),
           widget.icon != null
-              ? Icon(widget.icon,color: const Color.fromRGBO(191, 191, 191, 1),)
+              ? Icon(
+                  widget.icon,
+                  color: const Color.fromRGBO(191, 191, 191, 1),
+                )
               : const SizedBox(
                   width: 0,
                   height: 0,

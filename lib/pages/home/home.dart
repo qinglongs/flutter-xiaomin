@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
+import 'package:flutter_xiaomin/utils/shard.dart';
 
 import '../bill/bill.dart';
 import '../notepad/notepad.dart';
@@ -44,16 +45,20 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.pushNamed(context, 'addBill');
   }
 
+  /// 新建目标
+  _handleTapAddTarget() {
+    Navigator.pushNamed(context, 'chooseTarget');
+  }
+
   /// 渲染右下角的固定按钮
   _renderFloatingActionButton() {
-    if ([0, 2].contains(_currentIndex)) {
-
-      /// 点击事件map
-      Map<int, void Function()> tapMap = {
-        0: _handleTapAddNote,
-        2: _handleTapAddBill,
-      };
-
+    /// 点击事件map
+    Map<int, void Function()> tapMap = {
+      0: _handleTapAddNote,
+      2: _handleTapAddBill,
+      3: _handleTapAddTarget,
+    };
+    if (tapMap[_currentIndex] != null) {
       return FloatingActionButton(
         backgroundColor: const Color.fromRGBO(253, 126, 126, 1),
         onPressed: tapMap[_currentIndex],
@@ -76,28 +81,27 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       floatingActionButton: _renderFloatingActionButton(),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
+            icon: SvgUtils.svg('note-pad'),
             label: '记事本',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: SvgUtils.svg('record'),
             label: '经期记录',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: SvgUtils.svg('bill'),
             label: '账单',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: SvgUtils.svg('target'),
             label: '目标',
           ),
         ],
         currentIndex: _currentIndex,
         selectedItemColor: const Color.fromRGBO(253, 126, 126, 1),
         unselectedItemColor: const Color.fromRGBO(127, 124, 124, 1),
-        showUnselectedLabels: true,
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
@@ -105,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       body: Container(
-        margin: [1].contains(_currentIndex) ? marginTop : null,
+        margin: [1, 3].contains(_currentIndex) ? marginTop : null,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
           colors: [
