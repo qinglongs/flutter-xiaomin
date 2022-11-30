@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_xiaomin/components/button/button.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
 import 'package:flutter_xiaomin/components/tag/tag.dart';
 import 'package:flutter_xiaomin/pages/create_target/components/button_icon/button_icon.dart';
 import 'package:flutter_xiaomin/pages/create_target/components/step_input/step_input.dart';
-import 'package:flutter_xiaomin/utils/shard.dart';
 
 class CreateTarget extends StatefulWidget {
   const CreateTarget({Key? key}) : super(key: key);
@@ -68,12 +66,13 @@ class CreateTargetState extends State<CreateTarget> {
                   ),
                   Row(
                     children: const [
+                      Tag('任意时间',
+                          closeable: true, margin: EdgeInsets.only(right: 10)),
                       Tag(
-                        '任意时间',
-                        closeable: true,
+                        '早上',
+                        margin: EdgeInsets.only(right: 10),
                       ),
-                      Tag('早上'),
-                      Tag('中午'),
+                      Tag('中午', margin: EdgeInsets.only(right: 10)),
                       Tag('晚上'),
                     ],
                   ),
@@ -89,8 +88,8 @@ class CreateTargetState extends State<CreateTarget> {
                   ),
                   Row(
                     children: const [
-                      Tag('天'),
-                      Tag('周'),
+                      Tag('天', margin: EdgeInsets.only(right: 10)),
+                      Tag('周', margin: EdgeInsets.only(right: 10)),
                       Tag('月'),
                     ],
                   ),
@@ -121,7 +120,8 @@ class CreateTargetState extends State<CreateTarget> {
                         icon: Icons.add,
                         onTap: _onTapAddTime,
                       ),
-                      const Tag('11:00'),
+                      const Tag('11:00',
+                          margin: EdgeInsets.only(right: 10, left: 10)),
                       const Tag('12:00'),
                     ],
                   ),
@@ -143,7 +143,9 @@ class CreateTargetState extends State<CreateTarget> {
                 ],
               ),
             ),
-            const SizedBox(height: 60,),
+            const SizedBox(
+              height: 60,
+            ),
             TextButton(
               onPressed: () {
                 debugPrint('Received click');

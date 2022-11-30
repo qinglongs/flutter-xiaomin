@@ -109,20 +109,29 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       body: Container(
-        margin: [1, 3].contains(_currentIndex) ? marginTop : null,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-          colors: [
-            Color.fromRGBO(247, 249, 252, 1),
-            Color.fromRGBO(255, 242, 242, 1),
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        )),
-        width: 1000,
-        height: 1000,
-        child: _bottomNavigationBarOptions.elementAt(_currentIndex),
-      ),
+          // margin: [1,2,3].contains(_currentIndex) ? marginTop : null,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(247, 249, 252, 1),
+              Color.fromRGBO(255, 242, 242, 1),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          )),
+          child: SingleChildScrollView(
+            child:Column(
+              children:  [
+                Container(
+                  color: [3].contains(_currentIndex)?Colors.transparent: const Color.fromRGBO(253, 126, 126, 1),
+                  height: [1, 2,3].contains(_currentIndex)
+                      ? MediaQueryData.fromWindow(window).padding.top
+                      : 0,
+                ),
+                _bottomNavigationBarOptions.elementAt(_currentIndex)
+              ],
+            ),
+          )),
     );
   }
 }

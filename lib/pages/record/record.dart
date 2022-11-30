@@ -21,6 +21,7 @@ class RecordState extends State<Record> {
   @override
   void initState() {
     super.initState();
+    print('init');
     setAppbar(backgroundColor: const Color.fromRGBO(253, 126, 126, 1));
   }
 

@@ -17,6 +17,7 @@ class BillState extends State<Bill> {
   @override
   void initState() {
     super.initState();
+    print('bill-init');
     setAppbar(backgroundColor: const Color.fromRGBO(253, 126, 126, 1));
   }
 
@@ -33,7 +34,7 @@ class BillState extends State<Bill> {
         Container(
           width: double.infinity,
           color: const Color.fromRGBO(253, 126, 126, 1),
-          padding: const EdgeInsets.only(top: 40, bottom: 4, left: 16),
+          padding: const EdgeInsets.only(top: 4, bottom: 4, left: 16),
           child: Row(
             children: [
               Container(
