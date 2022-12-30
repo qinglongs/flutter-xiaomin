@@ -2,6 +2,8 @@
 
 ![flutter](https://img.shields.io/badge/flutter-3.x-green)
 
+[figma设计稿地址](https://www.figma.com/file/lpssqYCBdIPNzjA2t7tm0V/%E5%B0%8F%E6%95%8F%E6%97%A5%E8%AE%B0?node-id=1140%3A51844&t=fKPfAT4w7kG4LRz1-0)
+
 ## 目录
 
 ```
