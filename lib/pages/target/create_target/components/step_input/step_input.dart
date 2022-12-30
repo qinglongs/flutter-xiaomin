@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_xiaomin/pages/create_target/components/button_icon/button_icon.dart';
+import '../button_icon/button_icon.dart';
 
 class StepInput extends StatefulWidget {
   const StepInput({Key? key}) : super(key: key);

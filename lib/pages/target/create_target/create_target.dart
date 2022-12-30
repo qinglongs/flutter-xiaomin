@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
 import 'package:flutter_xiaomin/components/tag/tag.dart';
-import 'package:flutter_xiaomin/pages/create_target/components/button_icon/button_icon.dart';
-import 'package:flutter_xiaomin/pages/create_target/components/step_input/step_input.dart';
+import './components/button_icon/button_icon.dart';
+import './components/step_input/step_input.dart';
 
 class CreateTarget extends StatefulWidget {
   const CreateTarget({Key? key}) : super(key: key);
