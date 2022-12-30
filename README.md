@@ -1,16 +1,19 @@
-# flutter_xiaomin
+# 小敏日记app
 
-小敏日记app
+[![flutter](https://img.shields.io/badge/flutter-3.x-green)]
 
-## Getting Started
+## 目录
 
-This project is a starting point for a Flutter application.
+components --------------------------------- 公共组件
+    button --------------------------------- 按钮组件
+    choose_file ---------------------------- 选择文件
+    input ---------------------------------- 输入框
+    tag ------------------------------------ 标签
+    user_avatar ---------------------------- 用户头像
+    verification_code_button --------------- 验证码倒计时按钮
+layout ---------------- 全局布局
+pages ----------------- 页面
+utils ----------------- 工具
+main.dart ------------- 项目入口
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

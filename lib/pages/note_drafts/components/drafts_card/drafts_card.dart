@@ -19,11 +19,16 @@ class DraftsCardState extends State<DraftsCard> {
     Navigator.pushNamed(context, 'addNote');
   }
 
+  _handleLongPress(){
+
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return GestureDetector(
       onTap: _handleTapEditDrafts,
+      onLongPress: _handleLongPress,
       child: Container(
         padding: const EdgeInsets.all(16),
         decoration: const BoxDecoration(
