@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/providers/theme.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
+import 'package:provider/provider.dart';
 
 class Tag extends StatefulWidget {
   const Tag(this.text,
@@ -28,11 +30,13 @@ class Tag extends StatefulWidget {
 class TagState extends State<Tag> {
   @override
   Widget build(BuildContext context) {
+    final globalTheme = context.watch<GlobalTheme>();
+
     /// 背景颜色
     Color backgroundColor =
         widget.backgroundColor ?? const Color.fromRGBO(253, 126, 126, 0.1);
 
-    Color color = widget.color ?? const Color.fromRGBO(253, 126, 126, 1);
+    Color color = widget.color ?? globalTheme.themeColor;
 
     Widget icon = widget.closeable == true
         ? SvgUtils.svg('close')

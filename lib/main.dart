@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/pages/add_bill/add_bill.dart';
 import 'package:flutter_xiaomin/pages/choose_target/choose_target.dart';
@@ -11,12 +12,23 @@ import 'package:flutter_xiaomin/pages/preview_file/preview_file.dart';
 import 'package:flutter_xiaomin/pages/register/register.dart';
 import 'package:flutter_xiaomin/pages/splash_screen/splash_screen.dart';
 import 'package:flutter_xiaomin/pages/user_info/user_info.dart';
+import 'package:flutter_xiaomin/providers/theme.dart';
+import 'package:provider/provider.dart';
 
 import 'pages/add_note/add_note.dart';
 import 'pages/note_detail/note_detail.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    /// Providers are above [MyApp] instead of inside it, so that tests
+    /// can use [MyApp] while mocking the providers
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => GlobalTheme()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -25,6 +37,8 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final themeOptions = context.read<GlobalTheme>();
+
     return MaterialApp(
       // initialRoute: 'login',
       routes: {
@@ -61,13 +75,12 @@ class MyApp extends StatelessWidget {
 
               /// 边框
               side: MaterialStateProperty.all(
-                const BorderSide(
-                    color: Color.fromRGBO(253, 126, 126, 1), width: 0),
+                BorderSide(color: themeOptions.themeColor, width: 0),
               ),
 
               /// 背景
               backgroundColor: MaterialStateProperty.resolveWith(
-                  (states) => const Color.fromRGBO(253, 126, 126, 1)),
+                  (states) => themeOptions.themeColor),
 
               /// 文字和 icon 颜色
               foregroundColor:

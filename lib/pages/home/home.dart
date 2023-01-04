@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
+import 'package:provider/provider.dart';
 
+import '../../providers/theme.dart';
 import '../bill/bill.dart';
 import '../notepad/notepad.dart';
 import '../record/record.dart';
@@ -51,7 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   /// 渲染右下角的固定按钮
-  _renderFloatingActionButton() {
+  _renderFloatingActionButton(BuildContext context) {
+    final themOptions = context.watch<GlobalTheme>();
+
     /// 点击事件map
     Map<int, void Function()> tapMap = {
       0: _handleTapAddNote,
@@ -60,7 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
     };
     if (tapMap[_currentIndex] != null) {
       return FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(253, 126, 126, 1),
+        backgroundColor: themOptions.themeColor,
         onPressed: tapMap[_currentIndex],
         child: const Icon(Icons.add),
       );
@@ -70,8 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var marginTop =
-        EdgeInsets.only(top: MediaQueryData.fromWindow(window).padding.top);
+    final themOptions = context.watch<GlobalTheme>();
+
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -79,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      floatingActionButton: _renderFloatingActionButton(),
+      floatingActionButton: _renderFloatingActionButton(context),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -100,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         currentIndex: _currentIndex,
-        selectedItemColor: const Color.fromRGBO(253, 126, 126, 1),
+        selectedItemColor: themOptions.themeColor,
         unselectedItemColor: const Color.fromRGBO(127, 124, 124, 1),
         onTap: (int index) {
           setState(() {
@@ -109,6 +113,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
       body: Container(
+          height: double.infinity,
           // margin: [1,2,3].contains(_currentIndex) ? marginTop : null,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
@@ -120,15 +125,18 @@ class _MyHomePageState extends State<MyHomePage> {
             end: Alignment.bottomCenter,
           )),
           child: SingleChildScrollView(
-            child:Column(
-              children:  [
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
                 Container(
-                  color: [3].contains(_currentIndex)?Colors.transparent: const Color.fromRGBO(253, 126, 126, 1),
-                  height: [1, 2,3].contains(_currentIndex)
+                  color: [3].contains(_currentIndex)
+                      ? Colors.transparent
+                      : themOptions.themeColor,
+                  height: [1, 2, 3].contains(_currentIndex)
                       ? MediaQueryData.fromWindow(window).padding.top
                       : 0,
                 ),
-                _bottomNavigationBarOptions.elementAt(_currentIndex)
+                _bottomNavigationBarOptions.elementAt(_currentIndex),
               ],
             ),
           )),

@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/components/user_avatar/user_avatar.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
 import 'package:flutter_xiaomin/pages/splash_screen/components/skip/skip.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/theme.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return SplashScreenState();
   }
 }
@@ -21,7 +23,7 @@ class SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final themOptions = context.watch<GlobalTheme>();
     return ScreenScaffold(
       body: Column(
         children: [
@@ -38,11 +40,11 @@ class SplashScreenState extends State<SplashScreen> {
               height: 99,
             ),
           ),
-          const Text(
+          Text(
             '小敏日记',
             style: TextStyle(
                 fontSize: 48,
-                color: Color.fromRGBO(253, 126, 126, 1),
+                color: themOptions.themeColor,
                 fontWeight: FontWeight.w600),
           )
         ],

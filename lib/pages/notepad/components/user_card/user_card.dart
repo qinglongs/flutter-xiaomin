@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/providers/theme.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
+import 'package:provider/provider.dart';
 
 class UserCard extends StatelessWidget {
   const UserCard({Key? key}) : super(key: key);
@@ -8,6 +10,8 @@ class UserCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    final globalTheme = context.watch<GlobalTheme>();
 
     /// 查看个人资料
     _handleTapUserAvatar() {
@@ -37,12 +41,11 @@ class UserCard extends StatelessWidget {
                 height: 70,
                 margin: const EdgeInsets.only(right: 8),
                 decoration: BoxDecoration(
-                  border: Border.all(
-                      color: const Color.fromRGBO(253, 126, 126, 1), width: 2),
+                  border: Border.all(color: globalTheme.themeColor, width: 2),
                   color: const Color.fromRGBO(200, 126, 126, 1),
-                  boxShadow: const [
+                  boxShadow: [
                     BoxShadow(
-                        color: Color.fromRGBO(253, 126, 126, 0.5),
+                        color: globalTheme.themeColor50,
                         blurRadius: 4,
                         spreadRadius: 2)
                   ],

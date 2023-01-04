@@ -34,7 +34,7 @@ setAppbar({
       statusBarIconBrightness: theme,
       statusBarBrightness: theme);
 
-  // Platform.SystemChrome.setSystemUIOverlayStyle(uiStyle);
 
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+
+  SystemChrome.setSystemUIOverlayStyle(uiStyle);
 }

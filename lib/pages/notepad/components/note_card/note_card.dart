@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/providers/theme.dart';
+import 'package:provider/provider.dart';
 
 class NoteCard extends StatefulWidget {
   const NoteCard({Key? key}) : super(key: key);
@@ -11,11 +12,9 @@ class NoteCard extends StatefulWidget {
 }
 
 class NoteCardState extends State<NoteCard> {
-
   /// mock图片
   static String uri =
       'https://t7.baidu.com/it/u=1785207335,3397162108&fm=193&f=GIF';
-
 
   /// mock文本
   String text =
@@ -27,6 +26,8 @@ class NoteCardState extends State<NoteCard> {
 
   @override
   Widget build(BuildContext context) {
+    final themeOptions = context.watch<GlobalTheme>();
+
     return GestureDetector(
       onTap: _handleTapNoteCard,
       child: Container(
@@ -37,7 +38,7 @@ class NoteCardState extends State<NoteCard> {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              border: Border.all(color: const Color.fromRGBO(253, 126, 126, 1)),
+              border: Border.all(color: themeOptions.themeColor),
               borderRadius: const BorderRadius.all(Radius.circular(10)),
             ),
             child: Column(
