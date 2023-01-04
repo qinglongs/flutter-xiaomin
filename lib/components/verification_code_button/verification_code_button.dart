@@ -40,7 +40,6 @@ class VerificationCodeButtonState extends State<VerificationCodeButton> {
 
   /// 点击发送验证码
   _handleTapSendVerifyCode() {
-
     _countDown();
   }
 

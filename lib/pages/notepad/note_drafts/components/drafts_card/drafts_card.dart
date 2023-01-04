@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/providers/theme.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../providers/theme.dart';
 
 class DraftsCard extends StatefulWidget {
   const DraftsCard({Key? key}) : super(key: key);

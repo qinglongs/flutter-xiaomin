@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 import 'package:provider/provider.dart';
 

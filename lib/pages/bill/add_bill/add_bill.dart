@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
-import 'package:flutter_xiaomin/pages/add_bill/components/tag/tag.dart';
+import 'package:flutter_xiaomin/pages/bill/add_bill/components/tag/tag.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 
 class AddBill extends StatefulWidget {

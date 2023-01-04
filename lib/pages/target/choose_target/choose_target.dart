@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_xiaomin/components/tag/tag.dart';
 import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
-import 'package:flutter_xiaomin/pages/choose_target/components/target_card/target_card.dart';
+import './components/target_card/target_card.dart';
 import 'package:flutter_xiaomin/utils/shard.dart';
 import './service.dart';
 

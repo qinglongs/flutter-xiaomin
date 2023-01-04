@@ -1,13 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_xiaomin/pages/add_bill/add_bill.dart';
-import 'package:flutter_xiaomin/pages/choose_target/choose_target.dart';
-import 'package:flutter_xiaomin/pages/create_target/create_target.dart';
+import 'package:flutter_xiaomin/pages/bill/add_bill/add_bill.dart';
+import 'package:flutter_xiaomin/pages/target/choose_target/choose_target.dart';
+import 'package:flutter_xiaomin/pages/target/create_target/create_target.dart';
 import 'package:flutter_xiaomin/pages/forget_password/forget_password.dart';
 import 'package:flutter_xiaomin/pages/home/home.dart';
 import 'package:flutter_xiaomin/pages/login/login-page.dart';
-import 'package:flutter_xiaomin/pages/note_detail/note_detail.dart';
-import 'package:flutter_xiaomin/pages/note_drafts/note_drafts.dart';
+import 'package:flutter_xiaomin/pages/notepad/note_detail/note_detail.dart';
+import 'package:flutter_xiaomin/pages/notepad/note_drafts/note_drafts.dart';
 import 'package:flutter_xiaomin/pages/preview_file/preview_file.dart';
 import 'package:flutter_xiaomin/pages/register/register.dart';
 import 'package:flutter_xiaomin/pages/splash_screen/splash_screen.dart';
@@ -15,8 +15,8 @@ import 'package:flutter_xiaomin/pages/user_info/user_info.dart';
 import 'package:flutter_xiaomin/providers/theme.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/add_note/add_note.dart';
-import 'pages/note_detail/note_detail.dart';
+import 'pages/notepad/add_note/add_note.dart';
+import 'pages/notepad/note_detail/note_detail.dart';
 
 void main() {
   runApp(
