@@ -97,22 +97,57 @@ class ChooseTargetState extends State<ChooseTarget> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 32),
-            child: Center(
-                child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              runSpacing: 9,
-              spacing: 9,
-              children: const [
-                TargetCard(),
-                TargetCard(),
-                TargetCard(),
-                TargetCard(),
-                TargetCard(),
-                TargetCard(),
-              ],
-            )),
-          )
+              height: double.infinity,
+              padding: const EdgeInsets.only(top: 30),
+              color: Colors.pink,
+              child:Center(
+                child:  PageView(
+                  scrollDirection: Axis.horizontal,
+
+                  children: [
+                    Wrap(
+                      runSpacing: 9,
+                      spacing: 9,
+                      alignment: WrapAlignment.spaceAround,
+                      children: const [
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                      ],
+                    ),
+                    Wrap(
+                      alignment: WrapAlignment.spaceBetween,
+                      runSpacing: 9,
+                      spacing: 9,
+                      children: const [
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                      ],
+                    ),
+                    Wrap(
+                      alignment: WrapAlignment.spaceBetween,
+                      runSpacing: 9,
+                      spacing: 9,
+                      children: const [
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                        TargetCard(),
+                      ],
+                    )
+
+                  ],
+                ),
+              ))
         ],
       ),
     );

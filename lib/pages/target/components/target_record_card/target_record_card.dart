@@ -28,7 +28,7 @@ class TargetRecordCardState extends State<TargetRecordCard> {
     /// 边框
     BoxBorder? border = widget.isOver == true
         ? null
-        : Border.all(color: const Color.fromRGBO(253, 126, 126, 1), width: 1);
+        : Border.all(color: const Color.fromRGBO(253, 194, 194, 1), width: 1);
 
     /// 标题文字颜色
     Color labelTextColor = widget.isOver == true ? Colors.white : Colors.black;

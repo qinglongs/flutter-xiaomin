@@ -22,6 +22,7 @@ class LoginState extends State<Login> {
 
   _handleLogin() {
     print('登录');
+    Navigator.pushNamed(context, 'home');
   }
 
   _handleTapForgetPassword() {

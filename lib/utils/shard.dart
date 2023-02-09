@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
+/// 引入自定义的svg图标
 class SvgUtils {
   static String svgPath(String svgName) {
     return "assets/svg/$svgName";

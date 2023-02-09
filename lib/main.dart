@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
     final themeOptions = context.read<GlobalTheme>();
 
     return MaterialApp(
-      // initialRoute: 'login',
+      initialRoute: 'login',
       routes: {
         'splashScreen': (context) => const SplashScreen(),
         'login': (context) => const Login(),

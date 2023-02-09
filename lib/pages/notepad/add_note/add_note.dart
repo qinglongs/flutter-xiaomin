@@ -1,53 +1,119 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_xiaomin/components/choose_file/choose_file.dart';
+import 'package:flutter_xiaomin/components/tag/tag.dart';
+import 'package:flutter_xiaomin/layout/screen_scaffold/screen_scaffold.dart';
 
-class AddNote extends StatefulWidget {
+class AddNote extends StatelessWidget {
   const AddNote({Key? key}) : super(key: key);
 
   @override
-  _ScaleAnimationRouteState createState() => _ScaleAnimationRouteState();
-}
-
-//需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
-class _ScaleAnimationRouteState extends State<AddNote>
-    with SingleTickerProviderStateMixin {
-  late Animation<double> animation;
-  late AnimationController controller;
-
-  @override
-  initState() {
-    super.initState();
-    controller = AnimationController(
-      duration: const Duration(seconds: 2),
-      vsync: this,
-    );
-
-    //匀速
-    //图片宽高从0变到300
-    animation = Tween(begin: 0.0, end: 300.0).animate(controller)
-      ..addListener(() {
-        setState(() => {});
-      });
-
-    //启动动画(正向执行)
-    controller.forward();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        color: Colors.pink,
-        width: animation.value,
-        height: 100,
+    final size = MediaQuery.of(context).size;
+    // TODO: implement build
+    return ScreenScaffold(
+      title: '添加事件',
+      actions: <Widget>[
+        IconButton(
+          icon: const Icon(
+            Icons.more_vert,
+          ),
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('This is a snackBar')));
+          },
+        ),
+      ],
+      body: Container(
+        padding: const EdgeInsets.all(10),
+        decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromRGBO(247, 249, 252, 1),
+                Color.fromRGBO(255, 242, 242, 1),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            )),
+        width: size.width,
+        height: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const TextField(
+              maxLines: 7,
+              decoration: InputDecoration(
+                  hintText: "在这里写下想要记录等事件吧 ...", border: InputBorder.none),
+            ),
+            Container(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    SizedBox(
+                      child: Text('图片'),
+                      height: 40,
+                    ),
+                    ChooseFile(fileType: 'image',),
+                  ],
+                )),
+            Container(
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    SizedBox(
+                      child: Text('视频'),
+                      height: 40,
+                    ),
+                    ChooseFile(fileType: 'video',maxSize: 2,),
+                  ],
+                )),
+            Container(
+                margin: const EdgeInsets.only(bottom: 52),
+                padding: const EdgeInsets.only(top: 10, bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      child: Text('事件类型'),
+                      height: 40,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(right: 8),
+                          child: const Tag(
+                            '日记',
+                            closeable: true,
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 8),
+                          child: const Tag('见闻'),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(right: 8),
+                          child: const Tag('学习心得'),
+                        ),
+                      ],
+                    )
+                  ],
+                )),
+            TextButton(
+              onPressed: () {
+                debugPrint('Received click');
+              },
+              child: const SizedBox(
+                width: double.infinity,
+                height: 30,
+                child: Center(
+                  child: Text('保存'),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
-  }
-
-  @override
-  dispose() {
-    //路由销毁时需要释放动画资源
-    controller.dispose();
-    super.dispose();
   }
 }
